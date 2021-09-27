@@ -39,7 +39,8 @@ async function getCollateralizationRatio(vaultId) {
     functionArgs: [
       tx.uintCV(vaultId),
       tx.contractPrincipalCV(CONTRACT_ADDRESS, 'arkadiko-collateral-types-v1-1'),
-      tx.contractPrincipalCV(CONTRACT_ADDRESS, 'arkadiko-oracle-v1-1')
+      tx.contractPrincipalCV(CONTRACT_ADDRESS, 'arkadiko-oracle-v1-1'),
+      tx.falseCV()
     ],
     senderAddress: CONTRACT_ADDRESS,
     network
@@ -71,6 +72,7 @@ async function liquidateVault(vaultId, nonce) {
       tx.contractPrincipalCV(CONTRACT_ADDRESS, 'arkadiko-auction-engine-v1-1'),
       tx.uintCV(vaultId),
       tx.contractPrincipalCV(CONTRACT_ADDRESS, 'arkadiko-collateral-types-v1-1'),
+      tx.contractPrincipalCV(CONTRACT_ADDRESS, 'arkadiko-oracle-v1-1'),
     ],
     senderKey: process.env.STACKS_PRIVATE_KEY,
     postConditionMode: 1,
@@ -90,7 +92,7 @@ async function iterateAndCheck() {
   console.log('Last Vault ID is', lastId, ', iterating vaults');
   let vault;
   const vaultIds = Array.from(Array(lastId).keys());
-  for (let index = 85; index <= lastId; index++) {
+  for (let index = 1; index <= lastId; index++) {
     vault = await getVaultById(index);
     if (!vault['is-liquidated']['value']) {
       // console.log(vault);
@@ -101,6 +103,8 @@ async function iterateAndCheck() {
         console.log('Vault', index, 'is in danger... need to liquidate - collateralization ratio:', collRatio, ', liquidation ratio:', liqRatio);
         await liquidateVault(index, nonce);
         nonce += 1;
+      } else {
+        console.log('collateralization:', collRatio, ' and liquidation ratio', liqRatio);
       }
     }
     await new Promise(r => setTimeout(r, 2000));
