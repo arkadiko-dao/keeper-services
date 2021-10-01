@@ -24,7 +24,7 @@ const network = utils.resolveNetwork();
 
 const setPrice = async (price) => {
   let nonce = await utils.getNonce(CONTRACT_ADDRESS);
-  const priceWithDecimals = price.toFixed(4) * 1000000;
+  const priceWithDecimals = price.toFixed(2) * 100;
 
   const txOptions = {
     contractAddress: CONTRACT_ADDRESS,
