@@ -9,7 +9,7 @@ const utils = require('./utils');
 const network = utils.resolveNetwork();
 
 const setPrice = async (stxPrice, btcPrice) => {
-  let nonce = await utils.getNonce(CONTRACT_ADDRESS);
+  let nonce = await utils.getNonce('SP17BSF329AQEY7YA3CWQHN3KGQYTYYP7208CQH4G');
   const priceWithDecimals = stxPrice.toFixed(4) * 1000000;
 
   const txOptions = {
