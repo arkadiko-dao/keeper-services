@@ -108,7 +108,9 @@ const requestOptions = {
 rp(requestOptions).then(async (response) => {
   let stxPrice = response['data']['4847']['quote']['USD']['price'];
   let btcPrice = response['data']['1']['quote']['USD']['price'];
-  await setPrice(stxPrice, btcPrice);
+  if (stxPrice && btcPrice && stxPrice != 0 && btcPrice != 0) {
+    await setPrice(stxPrice, btcPrice);
+  }
 });
 
 // setPrice(0.5); // 0.5 USD
