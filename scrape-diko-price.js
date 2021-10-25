@@ -45,6 +45,7 @@ const fetchPair = async () => {
     json = JSON.stringify(obj);
 
     const params = {
+      ACL: "public-read",
       Bucket: BUCKET_NAME,
       Key: 'prices.json',
       Body: json
