@@ -31,28 +31,17 @@ async function getVaultById(vaultId) {
   return tx.cvToJSON(vaultTx).value;
 }
 
-async function iterateAndCheck() {
-  const vaults = [];
-  const lastId = await getLastVaultId();
-  console.log('Last Vault ID is', lastId, ', iterating vaults');
-  let vault;
-  const vaultIds = Array.from(Array(lastId).keys());
-  for (let index = 1; index <= lastId; index++) {
-    vault = await getVaultById(index);
-    if (!vault['is-liquidated']['value']) {
-      vaults.push(vault);
-    }
-  }
-
+async function writeVaults(vaults) {
   const s3 = new AWS.S3({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_ACCESS_KEY_SECRET
   });
-  json = JSON.stringify(vaults);
+  const json = JSON.stringify(vaults);
+  const unixTime = Math.floor(Date.now() / 1000);
   const params = {
     ACL: "public-read",
     Bucket: 'arkadiko-prices',
-    Key: 'vaults.json',
+    Key: `vaults-${unixTime}.json`,
     Body: json
   };
   s3.upload(params, function(err, data) {
@@ -61,6 +50,25 @@ async function iterateAndCheck() {
     }
     console.log(`File uploaded successfully. ${data.Location}`);
   });
+}
+
+async function iterateAndCheck() {
+  const vaults = [];
+  const lastId = await getLastVaultId();
+  console.log('Last Vault ID is', lastId, ', iterating vaults');
+  let vault;
+  const vaultIds = Array.from(Array(lastId).keys());
+  for (let index = 160; index <= lastId; index++) {
+    vault = await getVaultById(index);
+    if (!vault['is-liquidated']['value']) {
+      vaults.push(vault);
+    }
+    if (index % 10 === 0) {
+      writeVaults(vaults);
+    }
+  }
+
+  writeVaults(vaults);
 }
 
 iterateAndCheck();
