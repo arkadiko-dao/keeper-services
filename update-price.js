@@ -169,7 +169,7 @@ rp(requestOptions2).then(async (res) => {
             const btcDiff = bandBtcPrice / prevBtcPrice;
             // console.log(bandBtcPrice, prevBtcPrice, btcDiff);
             if (btcDiff < 1.3 && btcDiff > 0.7) {
-              console.log('publishing new STX price', bandStxPrice, 'and BTC price', bandBtcPrice);
+              // console.log('publishing new STX price', bandStxPrice, 'and BTC price', bandBtcPrice);
               await setPrice(bandStxPrice, bandBtcPrice);
             }
           });
