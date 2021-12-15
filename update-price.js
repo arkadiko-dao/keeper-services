@@ -7,6 +7,21 @@ const tx = require('@stacks/transactions');
 const BN = require('bn.js');
 const utils = require('./utils');
 const network = utils.resolveNetwork();
+const { Client } = require('@bandprotocol/bandchain.js');
+
+const getPrice = async (symbol) => {
+  const fetchedPrice = await tx.callReadOnlyFunction({
+    contractAddress: CONTRACT_ADDRESS,
+    contractName: "arkadiko-oracle-v1-1",
+    functionName: "get-price",
+    functionArgs: [tx.stringAsciiCV(symbol || 'STX')],
+    senderAddress: CONTRACT_ADDRESS,
+    network: network,
+  });
+  const json = tx.cvToJSON(fetchedPrice);
+
+  return json.value['last-price'].value;
+};
 
 const setPrice = async (stxPrice, btcPrice) => {
   let nonce = await utils.getNonce('SP17BSF329AQEY7YA3CWQHN3KGQYTYYP7208CQH4G');
@@ -127,25 +142,41 @@ const setPrice = async (stxPrice, btcPrice) => {
   }
 };
 
-const requestOptions = {
+const requestOptions2 = {
   method: 'GET',
-  uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest',
-  qs: {
-    'id': '4847,1',
-    'convert': 'USD'
-  },
-  headers: {
-    'X-CMC_PRO_API_KEY': process.env.CMC_API_KEY
-  },
+  uri: 'https://laozi1.bandchain.org/api/oracle/v1/request_prices?ask_count=16&min_count=10&symbols=STX&symbols=BTC',
   json: true,
   gzip: true
-};
+}
 
-rp(requestOptions).then(async (response) => {
-  let stxPrice = response['data']['4847']['quote']['USD']['price'];
-  let btcPrice = response['data']['1']['quote']['USD']['price'];
-  if (stxPrice && btcPrice && stxPrice != 0 && btcPrice != 0) {
-    await setPrice(stxPrice, btcPrice);
+rp(requestOptions2).then(async (res) => {
+  if (res['price_results'] && res['price_results'].length > 0) {
+    const stxRes = res['price_results'][0];
+    const btcRes = res['price_results'][1];
+    if (stxRes['symbol']  === 'STX' && btcRes['symbol'] === 'BTC') {
+      const bandStxMultiplier = stxRes['multiplier'];
+      const bandStxPriceDecimals = stxRes['px'];
+      const bandStxPrice = bandStxPriceDecimals / bandStxMultiplier;
+
+      getPrice('STX').then(async (prevPrice) => {
+        prevPrice = prevPrice / 1000000;
+        const diff = bandStxPrice / prevPrice;
+        if (diff < 1.3 && diff > 0.7) {
+          getPrice('xBTC').then(async (prevBtcPrice) => {
+            prevBtcPrice = prevBtcPrice / 1000000;
+            const bandBtcMultiplier = btcRes['multiplier'];
+            const bandBtcPriceDecimals = btcRes['px'];
+            const bandBtcPrice = bandBtcPriceDecimals / bandBtcMultiplier;
+            const btcDiff = bandBtcPrice / prevBtcPrice;
+            // console.log(bandBtcPrice, prevBtcPrice, btcDiff);
+            if (btcDiff < 1.3 && btcDiff > 0.7) {
+              console.log('publishing new STX price', bandStxPrice, 'and BTC price', bandBtcPrice);
+              await setPrice(bandStxPrice, bandBtcPrice);
+            }
+          });
+        }
+      });
+    }
   }
 });
 
