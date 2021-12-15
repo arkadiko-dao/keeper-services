@@ -7,7 +7,6 @@ const tx = require('@stacks/transactions');
 const BN = require('bn.js');
 const utils = require('./utils');
 const network = utils.resolveNetwork();
-const { Client } = require('@bandprotocol/bandchain.js');
 
 const getPrice = async (symbol) => {
   const fetchedPrice = await tx.callReadOnlyFunction({
