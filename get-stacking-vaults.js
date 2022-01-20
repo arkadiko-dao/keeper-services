@@ -58,9 +58,9 @@ async function iterateAndCheck() {
   console.log('Last Vault ID is', lastId, ', iterating vaults');
   let vault;
   const vaultIds = Array.from(Array(lastId).keys());
-  for (let index = 160; index <= lastId; index++) {
+  for (let index = 1000; index <= lastId; index++) {
     vault = await getVaultById(index);
-    if (!vault['is-liquidated']['value']) {
+    if (!vault['is-liquidated']['value'] && Number(vault['collateral']['value']) > 0) {
       vaults.push(vault);
     }
     if (index % 10 === 0) {

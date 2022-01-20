@@ -197,6 +197,17 @@ const getSwapPair = async (tokenXAddress, tokenXContract, tokenYAddress, tokenYC
     headers: { 'Content-Type': 'application/json' },
   });
 
+  const xbtcPriceInfo = await getPriceInfo('xBTC');
+  axios({
+    method: 'PATCH',
+    url: tokenUrl + `xbtc?key=${API_KEY}`,
+    data: {
+      last_price: xbtcPriceInfo['last-price']['value'],
+      price_last_updated: xbtcPriceInfo['last-block']['value']
+    },
+    headers: { 'Content-Type': 'application/json' },
+  });
+
   const dikoStaked = await getTotalStaked('arkadiko-stake-pool-diko-v1-2');
   axios({
     method: 'PATCH',
