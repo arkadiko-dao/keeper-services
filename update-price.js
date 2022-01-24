@@ -47,6 +47,7 @@ const setPrice = async (stxPrice, btcPrice) => {
     functionArgs: [tx.stringAsciiCV('xSTX'), tx.uintCV(new BN(priceWithDecimals)), tx.uintCV(1000000)],
     senderKey: process.env.STACKS_PRIVATE_KEY,
     nonce: new BN(nonce + 1),
+    fee: new BN(10000, 10),
     postConditionMode: 1,
     network
   };
@@ -61,6 +62,7 @@ const setPrice = async (stxPrice, btcPrice) => {
     functionArgs: [tx.stringAsciiCV('xBTC'), tx.uintCV(new BN(btcPrice.toFixed(0) * 1000000)), tx.uintCV(100000000)],
     senderKey: process.env.STACKS_PRIVATE_KEY,
     nonce: new BN(nonce + 2),
+    fee: new BN(10000, 10),
     postConditionMode: 1,
     network
   };
@@ -96,6 +98,7 @@ const setPrice = async (stxPrice, btcPrice) => {
       functionArgs: [tx.stringAsciiCV('DIKO'), tx.uintCV(new BN(dikoPrice * 1000000)), tx.uintCV(1000000)],
       senderKey: process.env.STACKS_PRIVATE_KEY,
       nonce: new BN(nonce + 3),
+      fee: new BN(10000, 10),
       postConditionMode: 1,
       network
     };
@@ -132,6 +135,7 @@ const setPrice = async (stxPrice, btcPrice) => {
       functionArgs: [tx.stringAsciiCV('USDA'), tx.uintCV(new BN(usdaPrice * 1000000)), tx.uintCV(1000000)],
       senderKey: process.env.STACKS_PRIVATE_KEY,
       nonce: new BN(nonce + 4),
+      fee: new BN(10000, 10),
       postConditionMode: 1,
       network
     };
