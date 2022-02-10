@@ -52,19 +52,24 @@ async function writeVaults(vaults) {
   });
 }
 
+async function timeout(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function iterateAndCheck() {
   const vaults = [];
   const lastId = await getLastVaultId();
   console.log('Last Vault ID is', lastId, ', iterating vaults');
   let vault;
   const vaultIds = Array.from(Array(lastId).keys());
-  for (let index = 1000; index <= lastId; index++) {
+  for (let index = 240; index <= lastId; index++) {
     vault = await getVaultById(index);
     if (!vault['is-liquidated']['value'] && Number(vault['collateral']['value']) > 0) {
       vaults.push(vault);
     }
     if (index % 10 === 0) {
       writeVaults(vaults);
+      await timeout(3000);
     }
   }
 

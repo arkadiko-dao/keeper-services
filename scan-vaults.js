@@ -94,14 +94,14 @@ async function iterateAndCheck() {
   const vaultIds = Array.from(Array(lastId).keys());
   for (let index = 1; index <= lastId; index++) {
     vault = await getVaultById(index);
-    if (!vault['is-liquidated']['value']) {
+    if (!vault['is-liquidated']['value'] && vault['debt']['value'] > 0) {
       // console.log(vault);
       console.log('Querying vault', index);
       const collRatio = await getCollateralizationRatio(index);
       const liqRatio = await getLiquidationRatio(vault['collateral-type']['value']);
       if (collRatio < liqRatio) {
         console.log('Vault', index, 'is in danger... need to liquidate - collateralization ratio:', collRatio, ', liquidation ratio:', liqRatio);
-        await liquidateVault(index, nonce);
+        // await liquidateVault(index, nonce);
         nonce += 1;
       } else {
         console.log('collateralization:', collRatio, ' and liquidation ratio', liqRatio);
