@@ -92,7 +92,7 @@ async function iterateAndCheck() {
   console.log('Last Vault ID is', lastId, ', iterating vaults');
   let vault;
   const vaultIds = Array.from(Array(lastId).keys());
-  for (let index = 1; index <= lastId; index++) {
+  for (let index = 655; index <= lastId; index++) {
     vault = await getVaultById(index);
     if (!vault['is-liquidated']['value'] && vault['debt']['value'] > 0) {
       // console.log(vault);
@@ -100,7 +100,7 @@ async function iterateAndCheck() {
       const collRatio = await getCollateralizationRatio(index);
       const liqRatio = await getLiquidationRatio(vault['collateral-type']['value']);
       if (collRatio < liqRatio) {
-        console.log('Vault', index, 'is in danger... need to liquidate - collateralization ratio:', collRatio, ', liquidation ratio:', liqRatio);
+        console.log('Vault', index, 'is in danger... need to liquidate - collateralization ratio:', collRatio, ', liquidation ratio:', liqRatio, 'and debt of', vault['debt']['value'] / 1000000, 'with collateral', vault['collateral']['value'] / 1000000);
         // await liquidateVault(index, nonce);
         nonce += 1;
       } else {
