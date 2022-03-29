@@ -177,6 +177,19 @@ const getSwapPair = async (tokenXAddress, tokenXContract, tokenYAddress, tokenYC
     headers: { 'Content-Type': 'application/json' },
   });
 
+  const ldnUsdaPair = await getSwapPair('SP3MBWGMCVC9KZ5DTAYFMG1D0AEJCR7NENTM3FTK5', 'lydian-token', CONTRACT_ADDRESS, 'usda-token');
+  axios({
+    method: 'PATCH',
+    url: poolUrl + `8?key=${API_KEY}`,
+    data: {
+      balance_x: ldnUsdaPair['balance-x']['value'],
+      balance_y: ldnUsdaPair['balance-y']['value'],
+      shares_total: ldnUsdaPair['shares-total']['value'],
+      enabled: ldnUsdaPair['enabled']['value']
+    },
+    headers: { 'Content-Type': 'application/json' },
+  });
+
   const dikoPriceInfo = await getPriceInfo('DIKO');
   axios({
     method: 'PATCH',
