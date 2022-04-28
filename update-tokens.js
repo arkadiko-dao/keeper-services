@@ -119,8 +119,7 @@ const getSwapPair = async (tokenXAddress, tokenXContract, tokenYAddress, tokenYC
     data: {
       balance_x: stxDikoPair['balance-x']['value'],
       balance_y: stxDikoPair['balance-y']['value'],
-      shares_total: stxDikoPair['shares-total']['value'],
-      enabled: stxDikoPair['enabled']['value']
+      shares_total: stxDikoPair['shares-total']['value']
     },
     headers: { 'Content-Type': 'application/json' },
   });
@@ -132,8 +131,7 @@ const getSwapPair = async (tokenXAddress, tokenXContract, tokenYAddress, tokenYC
     data: {
       balance_x: stxBtcPair['balance-x']['value'],
       balance_y: stxBtcPair['balance-y']['value'],
-      shares_total: stxBtcPair['shares-total']['value'],
-      enabled: stxBtcPair['enabled']['value']
+      shares_total: stxBtcPair['shares-total']['value']
     },
     headers: { 'Content-Type': 'application/json' },
   });
