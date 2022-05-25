@@ -62,7 +62,15 @@ function resolveNetwork() {
   }
 }
 
+async function getBlockHeight() {
+  const url = `${resolveUrl()}/v2/info`;
+  const result = await request(url, { json: true });
+  const currentBlock = result['stacks_tip_height'];
+  return currentBlock;
+}
+
 exports.resolveUrl = resolveUrl;
 exports.resolveNetwork = resolveNetwork;
 exports.processing = processing;
 exports.getNonce = getNonce;
+exports.getBlockHeight = getBlockHeight;
