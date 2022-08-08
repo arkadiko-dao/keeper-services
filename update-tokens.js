@@ -232,6 +232,17 @@ const getSwapPair = async (tokenXAddress, tokenXContract, tokenYAddress, tokenYC
     headers: { 'Content-Type': 'application/json' },
   });
 
+  const atAlexPriceInfo = await getPriceInfo('atALEX');
+  axios({
+    method: 'PATCH',
+    url: tokenUrl + `atalex?key=${API_KEY}`,
+    data: {
+      last_price: atAlexPriceInfo['last-price']['value'],
+      price_last_updated: atAlexPriceInfo['last-block']['value']
+    },
+    headers: { 'Content-Type': 'application/json' },
+  });
+
   const dikoStaked = await getTotalStaked('arkadiko-stake-pool-diko-v1-2');
   axios({
     method: 'PATCH',
