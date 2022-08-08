@@ -22,7 +22,7 @@ const getPrice = async (symbol) => {
   return json.value['last-price'].value;
 };
 
-const setPrice = async (stxPrice, btcPrice) => {
+const setPrice = async (stxPrice, btcPrice, atAlexPrice) => {
   let nonce = await utils.getNonce('SP17BSF329AQEY7YA3CWQHN3KGQYTYYP7208CQH4G');
   const priceWithDecimals = stxPrice.toFixed(4) * 1000000;
 
@@ -143,11 +143,34 @@ const setPrice = async (stxPrice, btcPrice) => {
     const result5 = tx.broadcastTransaction(transaction5, network);
     await utils.processing(result5, transaction5.txid(), 0);
   }
+
+  const atAlexTxOptions = {
+    contractAddress: CONTRACT_ADDRESS,
+    contractName: CONTRACT_NAME,
+    functionName: FUNCTION_NAME,
+    functionArgs: [tx.stringAsciiCV('atALEX'), tx.uintCV(new BN(atAlexPrice * 1000000)), tx.uintCV(1000000)],
+    senderKey: process.env.STACKS_PRIVATE_KEY,
+    nonce: new BN(nonce + 5),
+    fee: new BN(10000, 10),
+    postConditionMode: 1,
+    network
+  };
+  const transaction6 = await tx.makeContractCall(atAlexTxOptions);
+  const result6 = tx.broadcastTransaction(transaction6, network);
+  await utils.processing(result6, transaction6.txid(), 0);
 };
+
 
 const requestOptions2 = {
   method: 'GET',
   uri: 'https://laozi1.bandchain.org/api/oracle/v1/request_prices?ask_count=16&min_count=10&symbols=STX&symbols=BTC',
+  json: true,
+  gzip: true
+}
+
+const requestOptions3 = {
+  method: 'GET',
+  uri: 'https://hasura-console.alexlab.co/api/rest/oracle_price/autoalex',
   json: true,
   gzip: true
 }
@@ -173,8 +196,19 @@ rp(requestOptions2).then(async (res) => {
             const btcDiff = bandBtcPrice / prevBtcPrice;
             // console.log(bandBtcPrice, prevBtcPrice, btcDiff);
             if (btcDiff < 1.3 && btcDiff > 0.7) {
-              // console.log('publishing new STX price', bandStxPrice, 'and BTC price', bandBtcPrice);
-              await setPrice(bandStxPrice, bandBtcPrice);
+
+              rp(requestOptions3).then(async (res2) => {
+                const atAlexPrice = res2['laplace_current_token_price']['0']['avg_price_usd'];
+                const atAlexName = res2['laplace_current_token_price']['0']['token'];
+                getPrice('atALEX').then(async (prevAtAlexPrice) => {
+                  const alexDiff = atAlexPrice / prevAtAlexPrice;
+                  // console.log('publishing new STX price', bandStxPrice, 'and BTC price', bandBtcPrice, 'and atALEX price', atAlexPrice);
+                  if (atAlexName === 'auto-alex' && alexDiff < 1.3 && alexDiff > 0.7) {
+                    await setPrice(bandStxPrice, bandBtcPrice, atAlexPrice);
+                  }
+                });
+              });
+
             }
           });
         }
