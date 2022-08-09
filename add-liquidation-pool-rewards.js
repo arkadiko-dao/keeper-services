@@ -46,7 +46,7 @@ async function start() {
   console.log(" - Epoch end block: ", epochEndBlock);
 
   // Add rewards
-  if (currentBlock >= epochEndBlock) {
+  if (currentBlock >= epochEndBlock + 10) {
     await addRewards();
   }
 }
