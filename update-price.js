@@ -148,7 +148,7 @@ const setPrice = async (stxPrice, btcPrice, atAlexPrice) => {
     contractAddress: CONTRACT_ADDRESS,
     contractName: CONTRACT_NAME,
     functionName: FUNCTION_NAME,
-    functionArgs: [tx.stringAsciiCV('auto-alex'), tx.uintCV(new BN(atAlexPrice * 100000000)), tx.uintCV(100000000)],
+    functionArgs: [tx.stringAsciiCV('auto-alex'), tx.uintCV(new BN(atAlexPrice * 100000000)), tx.uintCV(10000000000)],
     senderKey: process.env.STACKS_PRIVATE_KEY,
     nonce: new BN(nonce + 5),
     fee: new BN(10000, 10),
