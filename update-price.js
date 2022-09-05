@@ -210,7 +210,7 @@ const getPrices = async () => {
               const alexDiff = atAlexPrice / prevAtAlexPrice;
               if (atAlexName === 'auto-alex' && alexDiff < 1.3 && alexDiff > 0.7) {
                 console.log('publishing new STX price', stxPrice, 'and BTC price', btcPrice, 'and atALEX price', atAlexPrice);
-                await setPrice(stxPrice, bandBtcPrice, atAlexPrice);
+                await setPrice(stxPrice, btcPrice, atAlexPrice);
               }
             });
           });
