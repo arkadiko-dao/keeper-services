@@ -191,40 +191,31 @@ const requestOptions3 = {
 const getPrices = async () => {
   const res = await rp(requestOptions);
   const stxPrice = res['data']['4847']['quote']['USD']['price'];
+  const btcPrice = res['data']['1']['quote']['USD']['price'];
 
-  rp(requestOptions2).then(async (res) => {
-    if (res['price_results'] && res['price_results'].length > 0) {
-      const btcRes = res['price_results'][1];
-      if (btcRes['symbol'] === 'BTC') {
-        getPrice('STX').then(async (prevPrice) => {
-          prevPrice = prevPrice / 1000000;
-          const diff = stxPrice / prevPrice;
-          if (diff < 1.3 && diff > 0.7) {
-            getPrice('xBTC').then(async (prevBtcPrice) => {
-              prevBtcPrice = prevBtcPrice / 1000000;
-              const bandBtcMultiplier = btcRes['multiplier'];
-              const bandBtcPriceDecimals = btcRes['px'];
-              const bandBtcPrice = bandBtcPriceDecimals / bandBtcMultiplier;
-              const btcDiff = bandBtcPrice / prevBtcPrice;
-              // console.log(bandBtcPrice, prevBtcPrice, btcDiff);
-              if (btcDiff < 1.3 && btcDiff > 0.7) {
-                rp(requestOptions3).then(async (res2) => {
-                  const atAlexPrice = res2['laplace_current_token_price']['0']['avg_price_usd'];
-                  const atAlexName = res2['laplace_current_token_price']['0']['token'];
-                  getPrice('atALEX').then(async (prevAtAlexPrice) => {
-                    prevAtAlexPrice = prevAtAlexPrice / 1000000;
-                    const alexDiff = atAlexPrice / prevAtAlexPrice;
-                    if (atAlexName === 'auto-alex' && alexDiff < 1.3 && alexDiff > 0.7) {
-                      console.log('publishing new STX price', stxPrice, 'and BTC price', bandBtcPrice, 'and atALEX price', atAlexPrice);
-                      await setPrice(stxPrice, bandBtcPrice, atAlexPrice);
-                    }
-                  });
-                });
+  getPrice('STX').then(async (prevPrice) => {
+    prevPrice = prevPrice / 1000000;
+    const diff = stxPrice / prevPrice;
+    if (diff < 1.3 && diff > 0.7) {
+      getPrice('xBTC').then(async (prevBtcPrice) => {
+        prevBtcPrice = prevBtcPrice / 1000000;
+        const btcDiff = btcPrice / prevBtcPrice;
+        // console.log(bandBtcPrice, prevBtcPrice, btcDiff);
+        if (btcDiff < 1.3 && btcDiff > 0.7) {
+          rp(requestOptions3).then(async (res2) => {
+            const atAlexPrice = res2['laplace_current_token_price']['0']['avg_price_usd'];
+            const atAlexName = res2['laplace_current_token_price']['0']['token'];
+            getPrice('atALEX').then(async (prevAtAlexPrice) => {
+              prevAtAlexPrice = prevAtAlexPrice / 1000000;
+              const alexDiff = atAlexPrice / prevAtAlexPrice;
+              if (atAlexName === 'auto-alex' && alexDiff < 1.3 && alexDiff > 0.7) {
+                console.log('publishing new STX price', stxPrice, 'and BTC price', btcPrice, 'and atALEX price', atAlexPrice);
+                await setPrice(stxPrice, bandBtcPrice, atAlexPrice);
               }
             });
-          }
-        });
-      }
+          });
+        }
+      });
     }
   });
 };
