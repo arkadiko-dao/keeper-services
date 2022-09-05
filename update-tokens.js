@@ -232,10 +232,10 @@ const getSwapPair = async (tokenXAddress, tokenXContract, tokenYAddress, tokenYC
     headers: { 'Content-Type': 'application/json' },
   });
 
-  const atAlexPriceInfo = await getPriceInfo('atALEX');
+  const atAlexPriceInfo = await getPriceInfo('auto-alex');
   axios({
     method: 'PATCH',
-    url: tokenUrl + `atalex?key=${API_KEY}`,
+    url: tokenUrl + `auto-alex?key=${API_KEY}`,
     data: {
       last_price: atAlexPriceInfo['last-price']['value'],
       price_last_updated: atAlexPriceInfo['last-block']['value']
