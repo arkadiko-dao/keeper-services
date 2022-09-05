@@ -205,7 +205,7 @@ const getPrices = async () => {
           rp(requestOptions3).then(async (res2) => {
             const atAlexPrice = res2['laplace_current_token_price']['0']['avg_price_usd'];
             const atAlexName = res2['laplace_current_token_price']['0']['token'];
-            getPrice('atALEX').then(async (prevAtAlexPrice) => {
+            getPrice('auto-alex').then(async (prevAtAlexPrice) => {
               prevAtAlexPrice = prevAtAlexPrice / 1000000;
               const alexDiff = atAlexPrice / prevAtAlexPrice;
               if (atAlexName === 'auto-alex' && alexDiff < 1.3 && alexDiff > 0.7) {
