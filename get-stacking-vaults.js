@@ -56,6 +56,18 @@ async function timeout(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+async function fetchVault(index, vaults) {
+  vault = await getVaultById(index);
+  console.log('queried vault with id', index);
+  if (!vault['is-liquidated']['value'] && Number(vault['collateral']['value']) > 0) {
+    vaults.push(vault);
+  }
+  if (index % 10 === 0) {
+    writeVaults(vaults);
+    await timeout(4000);
+  }
+}
+
 async function iterateAndCheck() {
   const vaults = [];
   const lastId = await getLastVaultId();
@@ -63,13 +75,12 @@ async function iterateAndCheck() {
   let vault;
   const vaultIds = Array.from(Array(lastId).keys());
   for (let index = 1; index <= lastId; index++) {
-    vault = await getVaultById(index);
-    if (!vault['is-liquidated']['value'] && Number(vault['collateral']['value']) > 0) {
-      vaults.push(vault);
-    }
-    if (index % 10 === 0) {
-      writeVaults(vaults);
-      await timeout(4000);
+    try {
+      await fetchVault(index, vaults);
+    } catch (e) {
+      console.log('something terrible has happened...');
+      await timeout(5000);
+      await fetchVault(index, vaults);
     }
   }
 
