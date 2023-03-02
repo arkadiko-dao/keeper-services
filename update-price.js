@@ -22,6 +22,23 @@ const getPrice = async (symbol) => {
   return json.value['last-price'].value;
 };
 
+const fetchUsdaPrice = async () => {
+  let details = await tx.callReadOnlyFunction({
+    contractAddress: 'SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9',
+    contractName: 'amm-swap-pool',
+    functionName: 'get-oracle-instant',
+    functionArgs: [
+      tx.contractPrincipalCV('SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9', 'token-wxusd'),
+      tx.contractPrincipalCV('SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9', 'token-wusda'),
+      tx.uintCV(500000)
+    ],
+    senderAddress: CONTRACT_ADDRESS,
+    network: network,
+  });
+
+  return tx.cvToJSON(details);
+};
+
 const setPrice = async (stxPrice, btcPrice, atAlexPrice) => {
   let nonce = await utils.getNonce('SP17BSF329AQEY7YA3CWQHN3KGQYTYYP7208CQH4G');
   const priceWithDecimals = stxPrice.toFixed(4) * 1000000;
@@ -107,32 +124,15 @@ const setPrice = async (stxPrice, btcPrice, atAlexPrice) => {
     await utils.processing(result4, transaction4.txid(), 0);
   }
 
-  const fetchPairStxUsda = async () => {
-    let details = await tx.callReadOnlyFunction({
-      contractAddress: CONTRACT_ADDRESS,
-      contractName: "arkadiko-swap-v2-1",
-      functionName: "get-pair-details",
-      functionArgs: [
-        tx.contractPrincipalCV(CONTRACT_ADDRESS, 'wrapped-stx-token'),
-        tx.contractPrincipalCV(CONTRACT_ADDRESS, 'usda-token')
-      ],
-      senderAddress: CONTRACT_ADDRESS,
-      network: network,
-    });
-
-    return tx.cvToJSON(details);
-  };
-  const stxUsda = await fetchPairStxUsda();
-  if (stxUsda.success) {
-    const stxUsdaDetails = stxUsda.value.value.value;
-    const stxAMMPrice = (stxUsdaDetails['balance-y'].value / stxUsdaDetails['balance-x'].value).toFixed(4);
-    const usdaPrice = (stxPrice/stxAMMPrice).toFixed(4);
+  const usdaPriceResult = await fetchUsdaPrice();
+  if (usdaPriceResult.success) {
+    const usdaPrice = usdaPriceResult.value.value;
 
     const usdaTxOptions = {
       contractAddress: CONTRACT_ADDRESS,
       contractName: CONTRACT_NAME,
       functionName: FUNCTION_NAME,
-      functionArgs: [tx.stringAsciiCV('USDA'), tx.uintCV(new BN(usdaPrice * 1000000)), tx.uintCV(1000000)],
+      functionArgs: [tx.stringAsciiCV('USDA'), tx.uintCV(new BN(usdaPrice)), tx.uintCV(10000000000)],
       senderKey: process.env.STACKS_PRIVATE_KEY,
       nonce: new BN(nonce + 4),
       fee: new BN(10000, 10),
