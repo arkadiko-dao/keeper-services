@@ -2,3 +2,4 @@
 .DS_Store
 prices.json
 notes.md
+node_modules/
