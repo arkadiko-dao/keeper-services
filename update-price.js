@@ -28,8 +28,8 @@ const fetchUsdaPrice = async () => {
     contractName: 'amm-swap-pool',
     functionName: 'get-oracle-instant',
     functionArgs: [
-      tx.contractPrincipalCV('SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9', 'token-wxusd'),
       tx.contractPrincipalCV('SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9', 'token-wusda'),
+      tx.contractPrincipalCV('SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9', 'token-wxusd'),
       tx.uintCV(500000)
     ],
     senderAddress: CONTRACT_ADDRESS,
