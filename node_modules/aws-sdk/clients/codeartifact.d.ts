@@ -29,11 +29,11 @@ declare class CodeArtifact extends Service {
    */
   copyPackageVersions(callback?: (err: AWSError, data: CodeArtifact.Types.CopyPackageVersionsResult) => void): Request<CodeArtifact.Types.CopyPackageVersionsResult, AWSError>;
   /**
-   *  Creates a domain. CodeArtifact domains make it easier to manage multiple repositories across an organization. You can use a domain to apply permissions across many repositories owned by different AWS accounts. An asset is stored only once in a domain, even if it's in multiple repositories.  Although you can have multiple domains, we recommend a single production domain that contains all published artifacts so that your development teams can find and share packages. You can use a second pre-production domain to test changes to the production domain configuration. 
+   *  Creates a domain. CodeArtifact domains make it easier to manage multiple repositories across an organization. You can use a domain to apply permissions across many repositories owned by different Amazon Web Services accounts. An asset is stored only once in a domain, even if it's in multiple repositories.  Although you can have multiple domains, we recommend a single production domain that contains all published artifacts so that your development teams can find and share packages. You can use a second pre-production domain to test changes to the production domain configuration. 
    */
   createDomain(params: CodeArtifact.Types.CreateDomainRequest, callback?: (err: AWSError, data: CodeArtifact.Types.CreateDomainResult) => void): Request<CodeArtifact.Types.CreateDomainResult, AWSError>;
   /**
-   *  Creates a domain. CodeArtifact domains make it easier to manage multiple repositories across an organization. You can use a domain to apply permissions across many repositories owned by different AWS accounts. An asset is stored only once in a domain, even if it's in multiple repositories.  Although you can have multiple domains, we recommend a single production domain that contains all published artifacts so that your development teams can find and share packages. You can use a second pre-production domain to test changes to the production domain configuration. 
+   *  Creates a domain. CodeArtifact domains make it easier to manage multiple repositories across an organization. You can use a domain to apply permissions across many repositories owned by different Amazon Web Services accounts. An asset is stored only once in a domain, even if it's in multiple repositories.  Although you can have multiple domains, we recommend a single production domain that contains all published artifacts so that your development teams can find and share packages. You can use a second pre-production domain to test changes to the production domain configuration. 
    */
   createDomain(callback?: (err: AWSError, data: CodeArtifact.Types.CreateDomainResult) => void): Request<CodeArtifact.Types.CreateDomainResult, AWSError>;
   /**
@@ -61,11 +61,19 @@ declare class CodeArtifact extends Service {
    */
   deleteDomainPermissionsPolicy(callback?: (err: AWSError, data: CodeArtifact.Types.DeleteDomainPermissionsPolicyResult) => void): Request<CodeArtifact.Types.DeleteDomainPermissionsPolicyResult, AWSError>;
   /**
-   *  Deletes one or more versions of a package. A deleted package version cannot be restored in your repository. If you want to remove a package version from your repository and be able to restore it later, set its status to Archived. Archived packages cannot be downloaded from a repository and don't show up with list package APIs (for example, ListackageVersions), but you can restore them using UpdatePackageVersionsStatus. 
+   * Deletes a package and all associated package versions. A deleted package cannot be restored. To delete one or more package versions, use the DeletePackageVersions API.
+   */
+  deletePackage(params: CodeArtifact.Types.DeletePackageRequest, callback?: (err: AWSError, data: CodeArtifact.Types.DeletePackageResult) => void): Request<CodeArtifact.Types.DeletePackageResult, AWSError>;
+  /**
+   * Deletes a package and all associated package versions. A deleted package cannot be restored. To delete one or more package versions, use the DeletePackageVersions API.
+   */
+  deletePackage(callback?: (err: AWSError, data: CodeArtifact.Types.DeletePackageResult) => void): Request<CodeArtifact.Types.DeletePackageResult, AWSError>;
+  /**
+   *  Deletes one or more versions of a package. A deleted package version cannot be restored in your repository. If you want to remove a package version from your repository and be able to restore it later, set its status to Archived. Archived packages cannot be downloaded from a repository and don't show up with list package APIs (for example, ListPackageVersions), but you can restore them using UpdatePackageVersionsStatus. 
    */
   deletePackageVersions(params: CodeArtifact.Types.DeletePackageVersionsRequest, callback?: (err: AWSError, data: CodeArtifact.Types.DeletePackageVersionsResult) => void): Request<CodeArtifact.Types.DeletePackageVersionsResult, AWSError>;
   /**
-   *  Deletes one or more versions of a package. A deleted package version cannot be restored in your repository. If you want to remove a package version from your repository and be able to restore it later, set its status to Archived. Archived packages cannot be downloaded from a repository and don't show up with list package APIs (for example, ListackageVersions), but you can restore them using UpdatePackageVersionsStatus. 
+   *  Deletes one or more versions of a package. A deleted package version cannot be restored in your repository. If you want to remove a package version from your repository and be able to restore it later, set its status to Archived. Archived packages cannot be downloaded from a repository and don't show up with list package APIs (for example, ListPackageVersions), but you can restore them using UpdatePackageVersionsStatus. 
    */
   deletePackageVersions(callback?: (err: AWSError, data: CodeArtifact.Types.DeletePackageVersionsResult) => void): Request<CodeArtifact.Types.DeletePackageVersionsResult, AWSError>;
   /**
@@ -77,11 +85,11 @@ declare class CodeArtifact extends Service {
    */
   deleteRepository(callback?: (err: AWSError, data: CodeArtifact.Types.DeleteRepositoryResult) => void): Request<CodeArtifact.Types.DeleteRepositoryResult, AWSError>;
   /**
-   *  Deletes the resource policy that is set on a repository. After a resource policy is deleted, the permissions allowed and denied by the deleted policy are removed. The effect of deleting a resource policy might not be immediate.    Use DeleteRepositoryPermissionsPolicy with caution. After a policy is deleted, AWS users, roles, and accounts lose permissions to perform the repository actions granted by the deleted policy.  
+   *  Deletes the resource policy that is set on a repository. After a resource policy is deleted, the permissions allowed and denied by the deleted policy are removed. The effect of deleting a resource policy might not be immediate.    Use DeleteRepositoryPermissionsPolicy with caution. After a policy is deleted, Amazon Web Services users, roles, and accounts lose permissions to perform the repository actions granted by the deleted policy.  
    */
   deleteRepositoryPermissionsPolicy(params: CodeArtifact.Types.DeleteRepositoryPermissionsPolicyRequest, callback?: (err: AWSError, data: CodeArtifact.Types.DeleteRepositoryPermissionsPolicyResult) => void): Request<CodeArtifact.Types.DeleteRepositoryPermissionsPolicyResult, AWSError>;
   /**
-   *  Deletes the resource policy that is set on a repository. After a resource policy is deleted, the permissions allowed and denied by the deleted policy are removed. The effect of deleting a resource policy might not be immediate.    Use DeleteRepositoryPermissionsPolicy with caution. After a policy is deleted, AWS users, roles, and accounts lose permissions to perform the repository actions granted by the deleted policy.  
+   *  Deletes the resource policy that is set on a repository. After a resource policy is deleted, the permissions allowed and denied by the deleted policy are removed. The effect of deleting a resource policy might not be immediate.    Use DeleteRepositoryPermissionsPolicy with caution. After a policy is deleted, Amazon Web Services users, roles, and accounts lose permissions to perform the repository actions granted by the deleted policy.  
    */
   deleteRepositoryPermissionsPolicy(callback?: (err: AWSError, data: CodeArtifact.Types.DeleteRepositoryPermissionsPolicyResult) => void): Request<CodeArtifact.Types.DeleteRepositoryPermissionsPolicyResult, AWSError>;
   /**
@@ -92,6 +100,14 @@ declare class CodeArtifact extends Service {
    *  Returns a DomainDescription object that contains information about the requested domain. 
    */
   describeDomain(callback?: (err: AWSError, data: CodeArtifact.Types.DescribeDomainResult) => void): Request<CodeArtifact.Types.DescribeDomainResult, AWSError>;
+  /**
+   *  Returns a PackageDescription object that contains information about the requested package.
+   */
+  describePackage(params: CodeArtifact.Types.DescribePackageRequest, callback?: (err: AWSError, data: CodeArtifact.Types.DescribePackageResult) => void): Request<CodeArtifact.Types.DescribePackageResult, AWSError>;
+  /**
+   *  Returns a PackageDescription object that contains information about the requested package.
+   */
+  describePackage(callback?: (err: AWSError, data: CodeArtifact.Types.DescribePackageResult) => void): Request<CodeArtifact.Types.DescribePackageResult, AWSError>;
   /**
    *  Returns a PackageVersionDescription object that contains information about the requested package version. 
    */
@@ -125,19 +141,19 @@ declare class CodeArtifact extends Service {
    */
   disposePackageVersions(callback?: (err: AWSError, data: CodeArtifact.Types.DisposePackageVersionsResult) => void): Request<CodeArtifact.Types.DisposePackageVersionsResult, AWSError>;
   /**
-   *  Generates a temporary authorization token for accessing repositories in the domain. This API requires the codeartifact:GetAuthorizationToken and sts:GetServiceBearerToken permissions. For more information about authorization tokens, see AWS CodeArtifact authentication and tokens.   CodeArtifact authorization tokens are valid for a period of 12 hours when created with the login command. You can call login periodically to refresh the token. When you create an authorization token with the GetAuthorizationToken API, you can set a custom authorization period, up to a maximum of 12 hours, with the durationSeconds parameter. The authorization period begins after login or GetAuthorizationToken is called. If login or GetAuthorizationToken is called while assuming a role, the token lifetime is independent of the maximum session duration of the role. For example, if you call sts assume-role and specify a session duration of 15 minutes, then generate a CodeArtifact authorization token, the token will be valid for the full authorization period even though this is longer than the 15-minute session duration. See Using IAM Roles for more information on controlling session duration.  
+   *  Generates a temporary authorization token for accessing repositories in the domain. This API requires the codeartifact:GetAuthorizationToken and sts:GetServiceBearerToken permissions. For more information about authorization tokens, see CodeArtifact authentication and tokens.   CodeArtifact authorization tokens are valid for a period of 12 hours when created with the login command. You can call login periodically to refresh the token. When you create an authorization token with the GetAuthorizationToken API, you can set a custom authorization period, up to a maximum of 12 hours, with the durationSeconds parameter. The authorization period begins after login or GetAuthorizationToken is called. If login or GetAuthorizationToken is called while assuming a role, the token lifetime is independent of the maximum session duration of the role. For example, if you call sts assume-role and specify a session duration of 15 minutes, then generate a CodeArtifact authorization token, the token will be valid for the full authorization period even though this is longer than the 15-minute session duration. See Using IAM Roles for more information on controlling session duration.  
    */
   getAuthorizationToken(params: CodeArtifact.Types.GetAuthorizationTokenRequest, callback?: (err: AWSError, data: CodeArtifact.Types.GetAuthorizationTokenResult) => void): Request<CodeArtifact.Types.GetAuthorizationTokenResult, AWSError>;
   /**
-   *  Generates a temporary authorization token for accessing repositories in the domain. This API requires the codeartifact:GetAuthorizationToken and sts:GetServiceBearerToken permissions. For more information about authorization tokens, see AWS CodeArtifact authentication and tokens.   CodeArtifact authorization tokens are valid for a period of 12 hours when created with the login command. You can call login periodically to refresh the token. When you create an authorization token with the GetAuthorizationToken API, you can set a custom authorization period, up to a maximum of 12 hours, with the durationSeconds parameter. The authorization period begins after login or GetAuthorizationToken is called. If login or GetAuthorizationToken is called while assuming a role, the token lifetime is independent of the maximum session duration of the role. For example, if you call sts assume-role and specify a session duration of 15 minutes, then generate a CodeArtifact authorization token, the token will be valid for the full authorization period even though this is longer than the 15-minute session duration. See Using IAM Roles for more information on controlling session duration.  
+   *  Generates a temporary authorization token for accessing repositories in the domain. This API requires the codeartifact:GetAuthorizationToken and sts:GetServiceBearerToken permissions. For more information about authorization tokens, see CodeArtifact authentication and tokens.   CodeArtifact authorization tokens are valid for a period of 12 hours when created with the login command. You can call login periodically to refresh the token. When you create an authorization token with the GetAuthorizationToken API, you can set a custom authorization period, up to a maximum of 12 hours, with the durationSeconds parameter. The authorization period begins after login or GetAuthorizationToken is called. If login or GetAuthorizationToken is called while assuming a role, the token lifetime is independent of the maximum session duration of the role. For example, if you call sts assume-role and specify a session duration of 15 minutes, then generate a CodeArtifact authorization token, the token will be valid for the full authorization period even though this is longer than the 15-minute session duration. See Using IAM Roles for more information on controlling session duration.  
    */
   getAuthorizationToken(callback?: (err: AWSError, data: CodeArtifact.Types.GetAuthorizationTokenResult) => void): Request<CodeArtifact.Types.GetAuthorizationTokenResult, AWSError>;
   /**
-   *  Returns the resource policy attached to the specified domain.    The policy is a resource-based policy, not an identity-based policy. For more information, see Identity-based policies and resource-based policies  in the AWS Identity and Access Management User Guide.  
+   *  Returns the resource policy attached to the specified domain.    The policy is a resource-based policy, not an identity-based policy. For more information, see Identity-based policies and resource-based policies  in the IAM User Guide.  
    */
   getDomainPermissionsPolicy(params: CodeArtifact.Types.GetDomainPermissionsPolicyRequest, callback?: (err: AWSError, data: CodeArtifact.Types.GetDomainPermissionsPolicyResult) => void): Request<CodeArtifact.Types.GetDomainPermissionsPolicyResult, AWSError>;
   /**
-   *  Returns the resource policy attached to the specified domain.    The policy is a resource-based policy, not an identity-based policy. For more information, see Identity-based policies and resource-based policies  in the AWS Identity and Access Management User Guide.  
+   *  Returns the resource policy attached to the specified domain.    The policy is a resource-based policy, not an identity-based policy. For more information, see Identity-based policies and resource-based policies  in the IAM User Guide.  
    */
   getDomainPermissionsPolicy(callback?: (err: AWSError, data: CodeArtifact.Types.GetDomainPermissionsPolicyResult) => void): Request<CodeArtifact.Types.GetDomainPermissionsPolicyResult, AWSError>;
   /**
@@ -149,19 +165,19 @@ declare class CodeArtifact extends Service {
    */
   getPackageVersionAsset(callback?: (err: AWSError, data: CodeArtifact.Types.GetPackageVersionAssetResult) => void): Request<CodeArtifact.Types.GetPackageVersionAssetResult, AWSError>;
   /**
-   *  Gets the readme file or descriptive text for a package version. For packages that do not contain a readme file, CodeArtifact extracts a description from a metadata file. For example, from the &lt;description&gt; element in the pom.xml file of a Maven package.   The returned text might contain formatting. For example, it might contain formatting for Markdown or reStructuredText. 
+   *  Gets the readme file or descriptive text for a package version.   The returned text might contain formatting. For example, it might contain formatting for Markdown or reStructuredText. 
    */
   getPackageVersionReadme(params: CodeArtifact.Types.GetPackageVersionReadmeRequest, callback?: (err: AWSError, data: CodeArtifact.Types.GetPackageVersionReadmeResult) => void): Request<CodeArtifact.Types.GetPackageVersionReadmeResult, AWSError>;
   /**
-   *  Gets the readme file or descriptive text for a package version. For packages that do not contain a readme file, CodeArtifact extracts a description from a metadata file. For example, from the &lt;description&gt; element in the pom.xml file of a Maven package.   The returned text might contain formatting. For example, it might contain formatting for Markdown or reStructuredText. 
+   *  Gets the readme file or descriptive text for a package version.   The returned text might contain formatting. For example, it might contain formatting for Markdown or reStructuredText. 
    */
   getPackageVersionReadme(callback?: (err: AWSError, data: CodeArtifact.Types.GetPackageVersionReadmeResult) => void): Request<CodeArtifact.Types.GetPackageVersionReadmeResult, AWSError>;
   /**
-   *  Returns the endpoint of a repository for a specific package format. A repository has one endpoint for each package format:     npm     pypi     maven   
+   *  Returns the endpoint of a repository for a specific package format. A repository has one endpoint for each package format:     maven     npm     nuget     pypi   
    */
   getRepositoryEndpoint(params: CodeArtifact.Types.GetRepositoryEndpointRequest, callback?: (err: AWSError, data: CodeArtifact.Types.GetRepositoryEndpointResult) => void): Request<CodeArtifact.Types.GetRepositoryEndpointResult, AWSError>;
   /**
-   *  Returns the endpoint of a repository for a specific package format. A repository has one endpoint for each package format:     npm     pypi     maven   
+   *  Returns the endpoint of a repository for a specific package format. A repository has one endpoint for each package format:     maven     npm     nuget     pypi   
    */
   getRepositoryEndpoint(callback?: (err: AWSError, data: CodeArtifact.Types.GetRepositoryEndpointResult) => void): Request<CodeArtifact.Types.GetRepositoryEndpointResult, AWSError>;
   /**
@@ -173,11 +189,11 @@ declare class CodeArtifact extends Service {
    */
   getRepositoryPermissionsPolicy(callback?: (err: AWSError, data: CodeArtifact.Types.GetRepositoryPermissionsPolicyResult) => void): Request<CodeArtifact.Types.GetRepositoryPermissionsPolicyResult, AWSError>;
   /**
-   *  Returns a list of DomainSummary objects for all domains owned by the AWS account that makes this call. Each returned DomainSummary object contains information about a domain. 
+   *  Returns a list of DomainSummary objects for all domains owned by the Amazon Web Services account that makes this call. Each returned DomainSummary object contains information about a domain. 
    */
   listDomains(params: CodeArtifact.Types.ListDomainsRequest, callback?: (err: AWSError, data: CodeArtifact.Types.ListDomainsResult) => void): Request<CodeArtifact.Types.ListDomainsResult, AWSError>;
   /**
-   *  Returns a list of DomainSummary objects for all domains owned by the AWS account that makes this call. Each returned DomainSummary object contains information about a domain. 
+   *  Returns a list of DomainSummary objects for all domains owned by the Amazon Web Services account that makes this call. Each returned DomainSummary object contains information about a domain. 
    */
   listDomains(callback?: (err: AWSError, data: CodeArtifact.Types.ListDomainsResult) => void): Request<CodeArtifact.Types.ListDomainsResult, AWSError>;
   /**
@@ -197,11 +213,11 @@ declare class CodeArtifact extends Service {
    */
   listPackageVersionDependencies(callback?: (err: AWSError, data: CodeArtifact.Types.ListPackageVersionDependenciesResult) => void): Request<CodeArtifact.Types.ListPackageVersionDependenciesResult, AWSError>;
   /**
-   *  Returns a list of PackageVersionSummary objects for package versions in a repository that match the request parameters. 
+   *  Returns a list of PackageVersionSummary objects for package versions in a repository that match the request parameters. Package versions of all statuses will be returned by default when calling list-package-versions with no --status parameter. 
    */
   listPackageVersions(params: CodeArtifact.Types.ListPackageVersionsRequest, callback?: (err: AWSError, data: CodeArtifact.Types.ListPackageVersionsResult) => void): Request<CodeArtifact.Types.ListPackageVersionsResult, AWSError>;
   /**
-   *  Returns a list of PackageVersionSummary objects for package versions in a repository that match the request parameters. 
+   *  Returns a list of PackageVersionSummary objects for package versions in a repository that match the request parameters. Package versions of all statuses will be returned by default when calling list-package-versions with no --status parameter. 
    */
   listPackageVersions(callback?: (err: AWSError, data: CodeArtifact.Types.ListPackageVersionsResult) => void): Request<CodeArtifact.Types.ListPackageVersionsResult, AWSError>;
   /**
@@ -213,11 +229,11 @@ declare class CodeArtifact extends Service {
    */
   listPackages(callback?: (err: AWSError, data: CodeArtifact.Types.ListPackagesResult) => void): Request<CodeArtifact.Types.ListPackagesResult, AWSError>;
   /**
-   *  Returns a list of RepositorySummary objects. Each RepositorySummary contains information about a repository in the specified AWS account and that matches the input parameters. 
+   *  Returns a list of RepositorySummary objects. Each RepositorySummary contains information about a repository in the specified Amazon Web Services account and that matches the input parameters. 
    */
   listRepositories(params: CodeArtifact.Types.ListRepositoriesRequest, callback?: (err: AWSError, data: CodeArtifact.Types.ListRepositoriesResult) => void): Request<CodeArtifact.Types.ListRepositoriesResult, AWSError>;
   /**
-   *  Returns a list of RepositorySummary objects. Each RepositorySummary contains information about a repository in the specified AWS account and that matches the input parameters. 
+   *  Returns a list of RepositorySummary objects. Each RepositorySummary contains information about a repository in the specified Amazon Web Services account and that matches the input parameters. 
    */
   listRepositories(callback?: (err: AWSError, data: CodeArtifact.Types.ListRepositoriesResult) => void): Request<CodeArtifact.Types.ListRepositoriesResult, AWSError>;
   /**
@@ -229,13 +245,21 @@ declare class CodeArtifact extends Service {
    */
   listRepositoriesInDomain(callback?: (err: AWSError, data: CodeArtifact.Types.ListRepositoriesInDomainResult) => void): Request<CodeArtifact.Types.ListRepositoriesInDomainResult, AWSError>;
   /**
-   * Gets information about AWS tags for a specified Amazon Resource Name (ARN) in AWS CodeArtifact.
+   * Gets information about Amazon Web Services tags for a specified Amazon Resource Name (ARN) in CodeArtifact.
    */
   listTagsForResource(params: CodeArtifact.Types.ListTagsForResourceRequest, callback?: (err: AWSError, data: CodeArtifact.Types.ListTagsForResourceResult) => void): Request<CodeArtifact.Types.ListTagsForResourceResult, AWSError>;
   /**
-   * Gets information about AWS tags for a specified Amazon Resource Name (ARN) in AWS CodeArtifact.
+   * Gets information about Amazon Web Services tags for a specified Amazon Resource Name (ARN) in CodeArtifact.
    */
   listTagsForResource(callback?: (err: AWSError, data: CodeArtifact.Types.ListTagsForResourceResult) => void): Request<CodeArtifact.Types.ListTagsForResourceResult, AWSError>;
+  /**
+   * Creates a new package version containing one or more assets (or files). The unfinished flag can be used to keep the package version in the Unfinished state until all of its assets have been uploaded (see Package version status in the CodeArtifact user guide). To set the package version’s status to Published, omit the unfinished flag when uploading the final asset, or set the status using UpdatePackageVersionStatus. Once a package version’s status is set to Published, it cannot change back to Unfinished.  Only generic packages can be published using this API. For more information, see Using generic packages in the CodeArtifact User Guide. 
+   */
+  publishPackageVersion(params: CodeArtifact.Types.PublishPackageVersionRequest, callback?: (err: AWSError, data: CodeArtifact.Types.PublishPackageVersionResult) => void): Request<CodeArtifact.Types.PublishPackageVersionResult, AWSError>;
+  /**
+   * Creates a new package version containing one or more assets (or files). The unfinished flag can be used to keep the package version in the Unfinished state until all of its assets have been uploaded (see Package version status in the CodeArtifact user guide). To set the package version’s status to Published, omit the unfinished flag when uploading the final asset, or set the status using UpdatePackageVersionStatus. Once a package version’s status is set to Published, it cannot change back to Unfinished.  Only generic packages can be published using this API. For more information, see Using generic packages in the CodeArtifact User Guide. 
+   */
+  publishPackageVersion(callback?: (err: AWSError, data: CodeArtifact.Types.PublishPackageVersionResult) => void): Request<CodeArtifact.Types.PublishPackageVersionResult, AWSError>;
   /**
    *  Sets a resource policy on a domain that specifies permissions to access it.   When you call PutDomainPermissionsPolicy, the resource policy on the domain is ignored when evaluting permissions. This ensures that the owner of a domain cannot lock themselves out of the domain, which would prevent them from being able to update the resource policy. 
    */
@@ -245,6 +269,14 @@ declare class CodeArtifact extends Service {
    */
   putDomainPermissionsPolicy(callback?: (err: AWSError, data: CodeArtifact.Types.PutDomainPermissionsPolicyResult) => void): Request<CodeArtifact.Types.PutDomainPermissionsPolicyResult, AWSError>;
   /**
+   * Sets the package origin configuration for a package. The package origin configuration determines how new versions of a package can be added to a repository. You can allow or block direct publishing of new package versions, or ingestion and retaining of new package versions from an external connection or upstream source. For more information about package origin controls and configuration, see Editing package origin controls in the CodeArtifact User Guide.  PutPackageOriginConfiguration can be called on a package that doesn't yet exist in the repository. When called on a package that does not exist, a package is created in the repository with no versions and the requested restrictions are set on the package. This can be used to preemptively block ingesting or retaining any versions from external connections or upstream repositories, or to block publishing any versions of the package into the repository before connecting any package managers or publishers to the repository.
+   */
+  putPackageOriginConfiguration(params: CodeArtifact.Types.PutPackageOriginConfigurationRequest, callback?: (err: AWSError, data: CodeArtifact.Types.PutPackageOriginConfigurationResult) => void): Request<CodeArtifact.Types.PutPackageOriginConfigurationResult, AWSError>;
+  /**
+   * Sets the package origin configuration for a package. The package origin configuration determines how new versions of a package can be added to a repository. You can allow or block direct publishing of new package versions, or ingestion and retaining of new package versions from an external connection or upstream source. For more information about package origin controls and configuration, see Editing package origin controls in the CodeArtifact User Guide.  PutPackageOriginConfiguration can be called on a package that doesn't yet exist in the repository. When called on a package that does not exist, a package is created in the repository with no versions and the requested restrictions are set on the package. This can be used to preemptively block ingesting or retaining any versions from external connections or upstream repositories, or to block publishing any versions of the package into the repository before connecting any package managers or publishers to the repository.
+   */
+  putPackageOriginConfiguration(callback?: (err: AWSError, data: CodeArtifact.Types.PutPackageOriginConfigurationResult) => void): Request<CodeArtifact.Types.PutPackageOriginConfigurationResult, AWSError>;
+  /**
    *  Sets the resource policy on a repository that specifies permissions to access it.   When you call PutRepositoryPermissionsPolicy, the resource policy on the repository is ignored when evaluting permissions. This ensures that the owner of a repository cannot lock themselves out of the repository, which would prevent them from being able to update the resource policy. 
    */
   putRepositoryPermissionsPolicy(params: CodeArtifact.Types.PutRepositoryPermissionsPolicyRequest, callback?: (err: AWSError, data: CodeArtifact.Types.PutRepositoryPermissionsPolicyResult) => void): Request<CodeArtifact.Types.PutRepositoryPermissionsPolicyResult, AWSError>;
@@ -253,27 +285,27 @@ declare class CodeArtifact extends Service {
    */
   putRepositoryPermissionsPolicy(callback?: (err: AWSError, data: CodeArtifact.Types.PutRepositoryPermissionsPolicyResult) => void): Request<CodeArtifact.Types.PutRepositoryPermissionsPolicyResult, AWSError>;
   /**
-   * Adds or updates tags for a resource in AWS CodeArtifact.
+   * Adds or updates tags for a resource in CodeArtifact.
    */
   tagResource(params: CodeArtifact.Types.TagResourceRequest, callback?: (err: AWSError, data: CodeArtifact.Types.TagResourceResult) => void): Request<CodeArtifact.Types.TagResourceResult, AWSError>;
   /**
-   * Adds or updates tags for a resource in AWS CodeArtifact.
+   * Adds or updates tags for a resource in CodeArtifact.
    */
   tagResource(callback?: (err: AWSError, data: CodeArtifact.Types.TagResourceResult) => void): Request<CodeArtifact.Types.TagResourceResult, AWSError>;
   /**
-   * Removes tags from a resource in AWS CodeArtifact.
+   * Removes tags from a resource in CodeArtifact.
    */
   untagResource(params: CodeArtifact.Types.UntagResourceRequest, callback?: (err: AWSError, data: CodeArtifact.Types.UntagResourceResult) => void): Request<CodeArtifact.Types.UntagResourceResult, AWSError>;
   /**
-   * Removes tags from a resource in AWS CodeArtifact.
+   * Removes tags from a resource in CodeArtifact.
    */
   untagResource(callback?: (err: AWSError, data: CodeArtifact.Types.UntagResourceResult) => void): Request<CodeArtifact.Types.UntagResourceResult, AWSError>;
   /**
-   *  Updates the status of one or more versions of a package. 
+   *  Updates the status of one or more versions of a package. Using UpdatePackageVersionsStatus, you can update the status of package versions to Archived, Published, or Unlisted. To set the status of a package version to Disposed, use DisposePackageVersions. 
    */
   updatePackageVersionsStatus(params: CodeArtifact.Types.UpdatePackageVersionsStatusRequest, callback?: (err: AWSError, data: CodeArtifact.Types.UpdatePackageVersionsStatusResult) => void): Request<CodeArtifact.Types.UpdatePackageVersionsStatusResult, AWSError>;
   /**
-   *  Updates the status of one or more versions of a package. 
+   *  Updates the status of one or more versions of a package. Using UpdatePackageVersionsStatus, you can update the status of package versions to Archived, Published, or Unlisted. To set the status of a package version to Disposed, use DisposePackageVersions. 
    */
   updatePackageVersionsStatus(callback?: (err: AWSError, data: CodeArtifact.Types.UpdatePackageVersionsStatusResult) => void): Request<CodeArtifact.Types.UpdatePackageVersionsStatusResult, AWSError>;
   /**
@@ -287,6 +319,8 @@ declare class CodeArtifact extends Service {
 }
 declare namespace CodeArtifact {
   export type AccountId = string;
+  export type AllowPublish = "ALLOW"|"BLOCK"|string;
+  export type AllowUpstream = "ALLOW"|"BLOCK"|string;
   export type Arn = string;
   export type Asset = Buffer|Uint8Array|Blob|string|Readable;
   export type AssetHashes = {[key: string]: HashValue};
@@ -312,7 +346,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -320,7 +354,7 @@ declare namespace CodeArtifact {
      */
     repository: RepositoryName;
     /**
-     *  The name of the external connection to add to the repository. The following values are supported:     public:npmjs - for the npm public repository.     public:pypi - for the Python Package Index.     public:maven-central - for Maven Central.     public:maven-googleandroid - for the Google Android repository.     public:maven-gradleplugins - for the Gradle plugins repository.     public:maven-commonsware - for the CommonsWare Android repository.   
+     *  The name of the external connection to add to the repository. The following values are supported:     public:npmjs - for the npm public repository.     public:nuget-org - for the NuGet Gallery.     public:pypi - for the Python Package Index.     public:maven-central - for Maven Central.     public:maven-googleandroid - for the Google Android repository.     public:maven-gradleplugins - for the Gradle plugins repository.     public:maven-commonsware - for the CommonsWare Android repository.     public:maven-clojars - for the Clojars repository.   
      */
     externalConnection: ExternalConnectionName;
   }
@@ -338,11 +372,11 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
-     *  The name of the repository that contains the package versions to copy. 
+     *  The name of the repository that contains the package versions to be copied. 
      */
     sourceRepository: RepositoryName;
     /**
@@ -350,19 +384,19 @@ declare namespace CodeArtifact {
      */
     destinationRepository: RepositoryName;
     /**
-     *  The format of the package that is copied. The valid package types are:     npm: A Node Package Manager (npm) package.     pypi: A Python Package Index (PyPI) package.     maven: A Maven package that contains compiled code in a distributable format, such as a JAR file.   
+     *  The format of the package versions to be copied. 
      */
     format: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the package versions to be copied. The package version component that specifies its namespace depends on its type. For example:    The namespace of a Maven package version is its groupId. The namespace is required when copying Maven package versions.     The namespace of an npm package version is its scope.     Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace.     The namespace of a generic package is its namespace.   
      */
     namespace?: PackageNamespace;
     /**
-     *  The name of the package that is copied. 
+     *  The name of the package that contains the versions to be copied. 
      */
     package: PackageName;
     /**
-     *  The versions of the package to copy.    You must specify versions or versionRevisions. You cannot specify both.  
+     *  The versions of the package to be copied.    You must specify versions or versionRevisions. You cannot specify both.  
      */
     versions?: PackageVersionList;
     /**
@@ -390,11 +424,11 @@ declare namespace CodeArtifact {
   }
   export interface CreateDomainRequest {
     /**
-     *  The name of the domain to create. All domain names in an AWS Region that are in the same AWS account must be unique. The domain name is used as the prefix in DNS hostnames. Do not use sensitive information in a domain name because it is publicly discoverable. 
+     *  The name of the domain to create. All domain names in an Amazon Web Services Region that are in the same Amazon Web Services account must be unique. The domain name is used as the prefix in DNS hostnames. Do not use sensitive information in a domain name because it is publicly discoverable. 
      */
     domain: DomainName;
     /**
-     *  The encryption key for the domain. This is used to encrypt content stored in a domain. An encryption key can be a key ID, a key Amazon Resource Name (ARN), a key alias, or a key alias ARN. To specify an encryptionKey, your IAM role must have kms:DescribeKey and kms:CreateGrant permissions on the encryption key that is used. For more information, see DescribeKey in the AWS Key Management Service API Reference and AWS KMS API Permissions Reference in the AWS Key Management Service Developer Guide.    CodeArtifact supports only symmetric CMKs. Do not associate an asymmetric CMK with your domain. For more information, see Using symmetric and asymmetric keys in the AWS Key Management Service Developer Guide.  
+     *  The encryption key for the domain. This is used to encrypt content stored in a domain. An encryption key can be a key ID, a key Amazon Resource Name (ARN), a key alias, or a key alias ARN. To specify an encryptionKey, your IAM role must have kms:DescribeKey and kms:CreateGrant permissions on the encryption key that is used. For more information, see DescribeKey in the Key Management Service API Reference and Key Management Service API Permissions Reference in the Key Management Service Developer Guide.    CodeArtifact supports only symmetric CMKs. Do not associate an asymmetric CMK with your domain. For more information, see Using symmetric and asymmetric keys in the Key Management Service Developer Guide.  
      */
     encryptionKey?: Arn;
     /**
@@ -414,7 +448,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -426,7 +460,7 @@ declare namespace CodeArtifact {
      */
     description?: Description;
     /**
-     *  A list of upstream repositories to associate with the repository. The order of the upstream repositories in the list determines their priority order when AWS CodeArtifact looks for a requested package version. For more information, see Working with upstream repositories. 
+     *  A list of upstream repositories to associate with the repository. The order of the upstream repositories in the list determines their priority order when CodeArtifact looks for a requested package version. For more information, see Working with upstream repositories. 
      */
     upstreams?: UpstreamRepositoryList;
     /**
@@ -446,7 +480,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -466,7 +500,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
   }
@@ -476,13 +510,42 @@ declare namespace CodeArtifact {
      */
     domain?: DomainDescription;
   }
+  export interface DeletePackageRequest {
+    /**
+     * The name of the domain that contains the package to delete.
+     */
+    domain: DomainName;
+    /**
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
+     */
+    domainOwner?: AccountId;
+    /**
+     * The name of the repository that contains the package to delete.
+     */
+    repository: RepositoryName;
+    /**
+     * The format of the requested package to delete.
+     */
+    format: PackageFormat;
+    /**
+     * The namespace of the package to delete. The package component that specifies its namespace depends on its type. For example:    The namespace of a Maven package is its groupId. The namespace is required when deleting Maven package versions.     The namespace of an npm package is its scope.    Python and NuGet packages do not contain corresponding components, packages of those formats do not have a namespace.     The namespace of a generic package is its namespace.   
+     */
+    namespace?: PackageNamespace;
+    /**
+     * The name of the package to delete.
+     */
+    package: PackageName;
+  }
+  export interface DeletePackageResult {
+    deletedPackage?: PackageSummary;
+  }
   export interface DeletePackageVersionsRequest {
     /**
      *  The name of the domain that contains the package to delete. 
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -490,11 +553,11 @@ declare namespace CodeArtifact {
      */
     repository: RepositoryName;
     /**
-     *  The format of the package versions to delete. The valid values are:     npm     pypi     maven   
+     *  The format of the package versions to delete. 
      */
     format: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the package versions to be deleted. The package version component that specifies its namespace depends on its type. For example:    The namespace of a Maven package version is its groupId. The namespace is required when deleting Maven package versions.     The namespace of an npm package version is its scope.     Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace.     The namespace of a generic package is its namespace.   
      */
     namespace?: PackageNamespace;
     /**
@@ -506,13 +569,13 @@ declare namespace CodeArtifact {
      */
     versions: PackageVersionList;
     /**
-     *  The expected status of the package version to delete. Valid values are:     Published     Unfinished     Unlisted     Archived     Disposed   
+     *  The expected status of the package version to delete. 
      */
     expectedStatus?: PackageVersionStatus;
   }
   export interface DeletePackageVersionsResult {
     /**
-     *  A list of the package versions that were successfully deleted. 
+     *  A list of the package versions that were successfully deleted. The status of every successful version will be Deleted. 
      */
     successfulVersions?: SuccessfulPackageVersionInfoMap;
     /**
@@ -526,7 +589,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -550,7 +613,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -570,12 +633,44 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
   }
   export interface DescribeDomainResult {
     domain?: DomainDescription;
+  }
+  export interface DescribePackageRequest {
+    /**
+     * The name of the domain that contains the repository that contains the package.
+     */
+    domain: DomainName;
+    /**
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
+     */
+    domainOwner?: AccountId;
+    /**
+     * The name of the repository that contains the requested package. 
+     */
+    repository: RepositoryName;
+    /**
+     * A format that specifies the type of the requested package.
+     */
+    format: PackageFormat;
+    /**
+     * The namespace of the requested package. The package component that specifies its namespace depends on its type. For example:    The namespace of a Maven package is its groupId. The namespace is required when requesting Maven packages.     The namespace of an npm package is its scope.     Python and NuGet packages do not contain a corresponding component, packages of those formats do not have a namespace.     The namespace of a generic package is its namespace.   
+     */
+    namespace?: PackageNamespace;
+    /**
+     * The name of the requested package.
+     */
+    package: PackageName;
+  }
+  export interface DescribePackageResult {
+    /**
+     * A PackageDescription object that contains information about the requested package.
+     */
+    package: PackageDescription;
   }
   export interface DescribePackageVersionRequest {
     /**
@@ -583,7 +678,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -591,11 +686,11 @@ declare namespace CodeArtifact {
      */
     repository: RepositoryName;
     /**
-     *  A format that specifies the type of the requested package version. The valid values are:     npm     pypi     maven   
+     *  A format that specifies the type of the requested package version. 
      */
     format: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the requested package version. The package version component that specifies its namespace depends on its type. For example:    The namespace of a Maven package version is its groupId.     The namespace of an npm package version is its scope.     Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace.     The namespace of a generic package is its namespace.   
      */
     namespace?: PackageNamespace;
     /**
@@ -619,7 +714,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -640,7 +735,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -664,7 +759,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -672,11 +767,11 @@ declare namespace CodeArtifact {
      */
     repository: RepositoryName;
     /**
-     *  A format that specifies the type of package versions you want to dispose. The valid values are:     npm     pypi     maven   
+     *  A format that specifies the type of package versions you want to dispose. 
      */
     format: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the package versions to be disposed. The package version component that specifies its namespace depends on its type. For example:    The namespace of a Maven package version is its groupId.     The namespace of an npm package version is its scope.     Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace.     The namespace of a generic package is its namespace.   
      */
     namespace?: PackageNamespace;
     /**
@@ -692,7 +787,7 @@ declare namespace CodeArtifact {
      */
     versionRevisions?: PackageVersionRevisionMap;
     /**
-     *  The expected status of the package version to dispose. Valid values are:     Published     Unfinished     Unlisted     Archived     Disposed   
+     *  The expected status of the package version to dispose. 
      */
     expectedStatus?: PackageVersionStatus;
   }
@@ -712,7 +807,7 @@ declare namespace CodeArtifact {
      */
     name?: DomainName;
     /**
-     *  The AWS account ID that owns the domain. 
+     *  The Amazon Web Services account ID that owns the domain. 
      */
     owner?: AccountId;
     /**
@@ -720,7 +815,7 @@ declare namespace CodeArtifact {
      */
     arn?: Arn;
     /**
-     *  The current status of a domain. The valid values are     Active     Deleted   
+     *  The current status of a domain. 
      */
     status?: DomainStatus;
     /**
@@ -728,7 +823,7 @@ declare namespace CodeArtifact {
      */
     createdTime?: Timestamp;
     /**
-     *  The ARN of an AWS Key Management Service (AWS KMS) key associated with a domain. 
+     *  The ARN of an Key Management Service (KMS) key associated with a domain. 
      */
     encryptionKey?: Arn;
     /**
@@ -744,6 +839,16 @@ declare namespace CodeArtifact {
      */
     s3BucketArn?: Arn;
   }
+  export interface DomainEntryPoint {
+    /**
+     * The name of the repository that a package was originally published to.
+     */
+    repositoryName?: RepositoryName;
+    /**
+     * The name of the external connection that a package was ingested from.
+     */
+    externalConnectionName?: ExternalConnectionName;
+  }
   export type DomainName = string;
   export type DomainStatus = "Active"|"Deleted"|string;
   export interface DomainSummary {
@@ -752,7 +857,7 @@ declare namespace CodeArtifact {
      */
     name?: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     owner?: AccountId;
     /**
@@ -760,7 +865,7 @@ declare namespace CodeArtifact {
      */
     arn?: Arn;
     /**
-     *  A string that contains the status of the domain. The valid values are:     Active     Deleted   
+     *  A string that contains the status of the domain. 
      */
     status?: DomainStatus;
     /**
@@ -782,7 +887,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -806,7 +911,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
   }
@@ -822,7 +927,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -830,11 +935,11 @@ declare namespace CodeArtifact {
      */
     repository: RepositoryName;
     /**
-     *  A format that specifies the type of the package version with the requested asset file. The valid values are:     npm     pypi     maven   
+     *  A format that specifies the type of the package version with the requested asset file. 
      */
     format: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the package version with the requested asset file. The package version component that specifies its namespace depends on its type. For example:    The namespace of a Maven package version is its groupId.     The namespace of an npm package version is its scope.     Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace.     The namespace of a generic package is its namespace.   
      */
     namespace?: PackageNamespace;
     /**
@@ -878,7 +983,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -886,11 +991,11 @@ declare namespace CodeArtifact {
      */
     repository: RepositoryName;
     /**
-     *  A format that specifies the type of the package version with the requested readme file. The valid values are:     npm     pypi     maven   
+     *  A format that specifies the type of the package version with the requested readme file. 
      */
     format: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the package version with the requested readme file. The package version component that specifies its namespace depends on its type. For example:    The namespace of an npm package version is its scope.     Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace.   
      */
     namespace?: PackageNamespace;
     /**
@@ -904,11 +1009,11 @@ declare namespace CodeArtifact {
   }
   export interface GetPackageVersionReadmeResult {
     /**
-     *  The format of the package with the requested readme file. Valid format types are:     npm     pypi     maven   
+     *  The format of the package with the requested readme file. 
      */
     format?: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the package version with the requested readme file. The package version component that specifies its namespace depends on its type. For example:    The namespace of a Maven package version is its groupId.     The namespace of an npm package version is its scope.     Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace.   
      */
     namespace?: PackageNamespace;
     /**
@@ -934,7 +1039,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain that contains the repository. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain that contains the repository. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -942,7 +1047,7 @@ declare namespace CodeArtifact {
      */
     repository: RepositoryName;
     /**
-     *  Returns which endpoint of a repository to return. A repository has one endpoint for each package format:     npm     pypi     maven   
+     *  Returns which endpoint of a repository to return. A repository has one endpoint for each package format. 
      */
     format: PackageFormat;
   }
@@ -958,7 +1063,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -1014,23 +1119,23 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
-     *  The name of the repository that contains the package that contains the returned package version assets. 
+     *  The name of the repository that contains the package that contains the requested package version assets. 
      */
     repository: RepositoryName;
     /**
-     *  The format of the package that contains the returned package version assets. The valid package types are:     npm: A Node Package Manager (npm) package.     pypi: A Python Package Index (PyPI) package.     maven: A Maven package that contains compiled code in a distributable format, such as a JAR file.   
+     *  The format of the package that contains the requested package version assets. 
      */
     format: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the package version that contains the requested package version assets. The package version component that specifies its namespace depends on its type. For example:    The namespace of a Maven package version is its groupId.     The namespace of an npm package version is its scope.     Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace.     The namespace of a generic package is its namespace.   
      */
     namespace?: PackageNamespace;
     /**
-     *  The name of the package that contains the returned package version assets. 
+     *  The name of the package that contains the requested package version assets. 
      */
     package: PackageName;
     /**
@@ -1048,19 +1153,19 @@ declare namespace CodeArtifact {
   }
   export interface ListPackageVersionAssetsResult {
     /**
-     *  The format of the package that contains the returned package version assets. 
+     *  The format of the package that contains the requested package version assets. 
      */
     format?: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the package version that contains the requested package version assets. The package version component that specifies its namespace depends on its type. For example:    The namespace of a Maven package version is its groupId.     The namespace of an npm package version is its scope.     Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace.   
      */
     namespace?: PackageNamespace;
     /**
-     *  The name of the package that contains the returned package version assets. 
+     *  The name of the package that contains the requested package version assets. 
      */
     package?: PackageName;
     /**
-     *  The version of the package associated with the returned assets. 
+     *  The version of the package associated with the requested assets. 
      */
     version?: PackageVersion;
     /**
@@ -1082,7 +1187,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -1090,11 +1195,11 @@ declare namespace CodeArtifact {
      */
     repository: RepositoryName;
     /**
-     *  The format of the package with the requested dependencies. The valid package types are:     npm: A Node Package Manager (npm) package.     pypi: A Python Package Index (PyPI) package.     maven: A Maven package that contains compiled code in a distributable format, such as a JAR file.   
+     *  The format of the package with the requested dependencies. 
      */
     format: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the package version with the requested dependencies. The package version component that specifies its namespace depends on its type. For example:    The namespace of a Maven package version is its groupId.     The namespace of an npm package version is its scope.     Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace.     The namespace of a generic package is its namespace.   
      */
     namespace?: PackageNamespace;
     /**
@@ -1112,11 +1217,11 @@ declare namespace CodeArtifact {
   }
   export interface ListPackageVersionDependenciesResult {
     /**
-     *  A format that specifies the type of the package that contains the returned dependencies. The valid values are:     npm     pypi     maven   
+     *  A format that specifies the type of the package that contains the returned dependencies. 
      */
     format?: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the package version that contains the returned dependencies. The package version component that specifies its namespace depends on its type. For example:    The namespace of a Maven package version is its groupId.     The namespace of an npm package version is its scope.     Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace.   
      */
     namespace?: PackageNamespace;
     /**
@@ -1143,35 +1248,35 @@ declare namespace CodeArtifact {
   export type ListPackageVersionsMaxResults = number;
   export interface ListPackageVersionsRequest {
     /**
-     *  The name of the domain that contains the repository that contains the returned package versions. 
+     *  The name of the domain that contains the repository that contains the requested package versions. 
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
-     *  The name of the repository that contains the package. 
+     *  The name of the repository that contains the requested package versions. 
      */
     repository: RepositoryName;
     /**
-     *  The format of the returned packages. The valid package types are:     npm: A Node Package Manager (npm) package.     pypi: A Python Package Index (PyPI) package.     maven: A Maven package that contains compiled code in a distributable format, such as a JAR file.   
+     *  The format of the package versions you want to list. 
      */
     format: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the package that contains the requested package versions. The package component that specifies its namespace depends on its type. For example:    The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     Python and NuGet packages do not contain a corresponding component, packages of those formats do not have a namespace.     The namespace of a generic package is its namespace.   
      */
     namespace?: PackageNamespace;
     /**
-     *  The name of the package for which you want to return a list of package versions. 
+     *  The name of the package for which you want to request package versions. 
      */
     package: PackageName;
     /**
-     *  A string that specifies the status of the package versions to include in the returned list. It can be one of the following:     Published     Unfinished     Unlisted     Archived     Disposed   
+     *  A string that filters the requested package versions by status. 
      */
     status?: PackageVersionStatus;
     /**
-     *  How to sort the returned list of package versions. 
+     *  How to sort the requested list of package versions. 
      */
     sortBy?: PackageVersionSortType;
     /**
@@ -1182,6 +1287,10 @@ declare namespace CodeArtifact {
      *  The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results. 
      */
     nextToken?: PaginationToken;
+    /**
+     * The originType used to filter package versions. Only package versions with the provided originType will be returned.
+     */
+    originType?: PackageVersionOriginType;
   }
   export interface ListPackageVersionsResult {
     /**
@@ -1189,11 +1298,11 @@ declare namespace CodeArtifact {
      */
     defaultDisplayVersion?: PackageVersion;
     /**
-     *  A format of the package. Valid package format values are:     npm     pypi     maven   
+     *  A format of the package. 
      */
     format?: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the package that contains the requested package versions. The package component that specifies its namespace depends on its type. For example:    The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     Python and NuGet packages do not contain a corresponding component, packages of those formats do not have a namespace.   
      */
     namespace?: PackageNamespace;
     /**
@@ -1212,27 +1321,27 @@ declare namespace CodeArtifact {
   export type ListPackagesMaxResults = number;
   export interface ListPackagesRequest {
     /**
-     *  The name of the domain that contains the repository that contains the requested list of packages. 
+     *  The name of the domain that contains the repository that contains the requested packages. 
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
-     *  The name of the repository from which packages are to be listed. 
+     *  The name of the repository that contains the requested packages. 
      */
     repository: RepositoryName;
     /**
-     *  The format of the packages. The valid package types are:     npm: A Node Package Manager (npm) package.     pypi: A Python Package Index (PyPI) package.     maven: A Maven package that contains compiled code in a distributable format, such as a JAR file.   
+     * The format used to filter requested packages. Only packages from the provided format will be returned.
      */
     format?: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace prefix used to filter requested packages. Only packages with a namespace that starts with the provided string value are returned. Note that although this option is called --namespace and not --namespace-prefix, it has prefix-matching behavior. Each package format uses namespace as follows:    The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     Python and NuGet packages do not contain a corresponding component, packages of those formats do not have a namespace.     The namespace of a generic package is its namespace.   
      */
     namespace?: PackageNamespace;
     /**
-     *  A prefix used to filter returned packages. Only packages with names that start with packagePrefix are returned. 
+     *  A prefix used to filter requested packages. Only packages with names that start with packagePrefix are returned. 
      */
     packagePrefix?: PackageName;
     /**
@@ -1243,6 +1352,14 @@ declare namespace CodeArtifact {
      *  The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results. 
      */
     nextToken?: PaginationToken;
+    /**
+     * The value of the Publish package origin control restriction used to filter requested packages. Only packages with the provided restriction are returned. For more information, see PackageOriginRestrictions.
+     */
+    publish?: AllowPublish;
+    /**
+     * The value of the Upstream package origin control restriction used to filter requested packages. Only packages with the provided restriction are returned. For more information, see PackageOriginRestrictions.
+     */
+    upstream?: AllowUpstream;
   }
   export interface ListPackagesResult {
     /**
@@ -1261,11 +1378,11 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
-     *  Filter the list of repositories to only include those that are managed by the AWS account ID. 
+     *  Filter the list of repositories to only include those that are managed by the Amazon Web Services account ID. 
      */
     administratorAccount?: AccountId;
     /**
@@ -1332,7 +1449,7 @@ declare namespace CodeArtifact {
   export type LongOptional = number;
   export interface PackageDependency {
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the package that this package depends on. The package component that specifies its namespace depends on its type. For example:    The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     Python and NuGet packages do not contain a corresponding component, packages of those formats do not have a namespace.   
      */
     namespace?: PackageNamespace;
     /**
@@ -1340,7 +1457,7 @@ declare namespace CodeArtifact {
      */
     package?: PackageName;
     /**
-     *  The type of a package dependency. The possible values depend on the package type. Example types are compile, runtime, and test for Maven packages, and dev, prod, and optional for npm packages. 
+     *  The type of a package dependency. The possible values depend on the package type.   npm: regular, dev, peer, optional    maven: optional, parent, compile, runtime, test, system, provided.  Note that parent is not a regular Maven dependency type; instead this is extracted from the &lt;parent&gt; element if one is defined in the package version's POM file.    nuget: The dependencyType field is never set for NuGet packages.   pypi: Requires-Dist   
      */
     dependencyType?: String;
     /**
@@ -1349,32 +1466,70 @@ declare namespace CodeArtifact {
     versionRequirement?: String;
   }
   export type PackageDependencyList = PackageDependency[];
-  export type PackageFormat = "npm"|"pypi"|"maven"|"nuget"|string;
-  export type PackageName = string;
-  export type PackageNamespace = string;
-  export interface PackageSummary {
+  export interface PackageDescription {
     /**
-     *  The format of the package. Valid values are:     npm     pypi     maven   
+     * A format that specifies the type of the package.
      */
     format?: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the package. The package component that specifies its namespace depends on its type. For example:    The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     Python and NuGet packages do not contain a corresponding component, packages of those formats do not have a namespace.     The namespace of a generic package is its namespace.   
+     */
+    namespace?: PackageNamespace;
+    /**
+     * The name of the package.
+     */
+    name?: PackageName;
+    /**
+     * The package origin configuration for the package.
+     */
+    originConfiguration?: PackageOriginConfiguration;
+  }
+  export type PackageFormat = "npm"|"pypi"|"maven"|"nuget"|"generic"|string;
+  export type PackageName = string;
+  export type PackageNamespace = string;
+  export interface PackageOriginConfiguration {
+    /**
+     * A PackageOriginRestrictions object that contains information about the upstream and publish package origin configuration for the package.
+     */
+    restrictions?: PackageOriginRestrictions;
+  }
+  export interface PackageOriginRestrictions {
+    /**
+     * The package origin configuration that determines if new versions of the package can be published directly to the repository.
+     */
+    publish: AllowPublish;
+    /**
+     * The package origin configuration that determines if new versions of the package can be added to the repository from an external connection or upstream source.
+     */
+    upstream: AllowUpstream;
+  }
+  export interface PackageSummary {
+    /**
+     *  The format of the package. 
+     */
+    format?: PackageFormat;
+    /**
+     * The namespace of the package. The package component that specifies its namespace depends on its type. For example:    The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     Python and NuGet packages do not contain a corresponding component, packages of those formats do not have a namespace.     The namespace of a generic package is its namespace.   
      */
     namespace?: PackageNamespace;
     /**
      *  The name of the package. 
      */
     package?: PackageName;
+    /**
+     * A PackageOriginConfiguration object that contains a PackageOriginRestrictions object that contains information about the upstream and publish package origin restrictions.
+     */
+    originConfiguration?: PackageOriginConfiguration;
   }
   export type PackageSummaryList = PackageSummary[];
   export type PackageVersion = string;
   export interface PackageVersionDescription {
     /**
-     *  The format of the package version. The valid package formats are:     npm: A Node Package Manager (npm) package.     pypi: A Python Package Index (PyPI) package.     maven: A Maven package that contains compiled code in a distributable format, such as a JAR file.   
+     *  The format of the package version. 
      */
     format?: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the package version. The package version component that specifies its namespace depends on its type. For example:    The namespace of a Maven package version is its groupId.     The namespace of an npm package version is its scope.     Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace.     The namespace of a generic package is its namespace.   
      */
     namespace?: PackageNamespace;
     /**
@@ -1414,9 +1569,13 @@ declare namespace CodeArtifact {
      */
     revision?: PackageVersionRevision;
     /**
-     *  A string that contains the status of the package version. It can be one of the following:     Published     Unfinished     Unlisted     Archived     Disposed   
+     *  A string that contains the status of the package version. 
      */
     status?: PackageVersionStatus;
+    /**
+     * A PackageVersionOrigin object that contains information about how the package version was added to the repository.
+     */
+    origin?: PackageVersionOrigin;
   }
   export interface PackageVersionError {
     /**
@@ -1431,6 +1590,17 @@ declare namespace CodeArtifact {
   export type PackageVersionErrorCode = "ALREADY_EXISTS"|"MISMATCHED_REVISION"|"MISMATCHED_STATUS"|"NOT_ALLOWED"|"NOT_FOUND"|"SKIPPED"|string;
   export type PackageVersionErrorMap = {[key: string]: PackageVersionError};
   export type PackageVersionList = PackageVersion[];
+  export interface PackageVersionOrigin {
+    /**
+     * A DomainEntryPoint object that contains information about from which repository or external connection the package version was added to the domain.
+     */
+    domainEntryPoint?: DomainEntryPoint;
+    /**
+     * Describes how the package version was originally added to the domain. An INTERNAL origin type means the package version was published directly to a repository in the domain. An EXTERNAL origin type means the package version was ingested from an external connection.
+     */
+    originType?: PackageVersionOriginType;
+  }
+  export type PackageVersionOriginType = "INTERNAL"|"EXTERNAL"|"UNKNOWN"|string;
   export type PackageVersionRevision = string;
   export type PackageVersionRevisionMap = {[key: string]: PackageVersionRevision};
   export type PackageVersionSortType = "PUBLISHED_TIME"|string;
@@ -1445,21 +1615,101 @@ declare namespace CodeArtifact {
      */
     revision?: PackageVersionRevision;
     /**
-     *  A string that contains the status of the package version. It can be one of the following:     Published     Unfinished     Unlisted     Archived     Disposed   
+     *  A string that contains the status of the package version. It can be one of the following: 
      */
     status: PackageVersionStatus;
+    /**
+     * A PackageVersionOrigin object that contains information about how the package version was added to the repository.
+     */
+    origin?: PackageVersionOrigin;
   }
   export type PackageVersionSummaryList = PackageVersionSummary[];
   export type PaginationToken = string;
   export type PolicyDocument = string;
   export type PolicyRevision = string;
+  export interface PublishPackageVersionRequest {
+    /**
+     * The name of the domain that contains the repository that contains the package version to publish.
+     */
+    domain: DomainName;
+    /**
+     * The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces.
+     */
+    domainOwner?: AccountId;
+    /**
+     * The name of the repository that the package version will be published to.
+     */
+    repository: RepositoryName;
+    /**
+     * A format that specifies the type of the package version with the requested asset file.
+     */
+    format: PackageFormat;
+    /**
+     * The namespace of the package version to publish.
+     */
+    namespace?: PackageNamespace;
+    /**
+     * The name of the package version to publish.
+     */
+    package: PackageName;
+    /**
+     * The package version to publish (for example, 3.5.2).
+     */
+    packageVersion: PackageVersion;
+    /**
+     * The content of the asset to publish.
+     */
+    assetContent: Asset;
+    /**
+     * The name of the asset to publish. Asset names can include Unicode letters and numbers, and the following special characters: ~ ! @ ^ &amp; ( ) - ` _ + [ ] { } ; , . ` 
+     */
+    assetName: AssetName;
+    /**
+     * The SHA256 hash of the assetContent to publish. This value must be calculated by the caller and provided with the request (see Publishing a generic package in the CodeArtifact User Guide). This value is used as an integrity check to verify that the assetContent has not changed after it was originally sent.
+     */
+    assetSHA256: SHA256;
+    /**
+     * Specifies whether the package version should remain in the unfinished state. If omitted, the package version status will be set to Published (see Package version status in the CodeArtifact User Guide). Valid values: unfinished 
+     */
+    unfinished?: BooleanOptional;
+  }
+  export interface PublishPackageVersionResult {
+    /**
+     * The format of the package version.
+     */
+    format?: PackageFormat;
+    /**
+     * The namespace of the package version.
+     */
+    namespace?: PackageNamespace;
+    /**
+     * The name of the package.
+     */
+    package?: PackageName;
+    /**
+     * The version of the package.
+     */
+    version?: PackageVersion;
+    /**
+     * The revision of the package version.
+     */
+    versionRevision?: PackageVersionRevision;
+    /**
+     * A string that contains the status of the package version. For more information, see Package version status in the CodeArtifact User Guide.
+     */
+    status?: PackageVersionStatus;
+    /**
+     * An AssetSummary for the published asset.
+     */
+    asset?: AssetSummary;
+  }
   export interface PutDomainPermissionsPolicyRequest {
     /**
      *  The name of the domain on which to set the resource policy. 
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -1477,13 +1727,49 @@ declare namespace CodeArtifact {
      */
     policy?: ResourcePolicy;
   }
+  export interface PutPackageOriginConfigurationRequest {
+    /**
+     * The name of the domain that contains the repository that contains the package.
+     */
+    domain: DomainName;
+    /**
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
+     */
+    domainOwner?: AccountId;
+    /**
+     * The name of the repository that contains the package.
+     */
+    repository: RepositoryName;
+    /**
+     * A format that specifies the type of the package to be updated.
+     */
+    format: PackageFormat;
+    /**
+     * The namespace of the package to be updated. The package component that specifies its namespace depends on its type. For example:    The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     Python and NuGet packages do not contain a corresponding component, packages of those formats do not have a namespace.     The namespace of a generic package is its namespace.   
+     */
+    namespace?: PackageNamespace;
+    /**
+     * The name of the package to be updated.
+     */
+    package: PackageName;
+    /**
+     * A PackageOriginRestrictions object that contains information about the upstream and publish package origin restrictions. The upstream restriction determines if new package versions can be ingested or retained from external connections or upstream repositories. The publish restriction determines if new package versions can be published directly to the repository. You must include both the desired upstream and publish restrictions.
+     */
+    restrictions: PackageOriginRestrictions;
+  }
+  export interface PutPackageOriginConfigurationResult {
+    /**
+     * A PackageOriginConfiguration object that describes the origin configuration set for the package. It contains a PackageOriginRestrictions object that describes how new versions of the package can be introduced to the repository.
+     */
+    originConfiguration?: PackageOriginConfiguration;
+  }
   export interface PutRepositoryPermissionsPolicyRequest {
     /**
      *  The name of the domain containing the repository to set the resource policy on. 
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -1511,7 +1797,7 @@ declare namespace CodeArtifact {
      */
     name?: RepositoryName;
     /**
-     *  The 12-digit account number of the AWS account that manages the repository. 
+     *  The 12-digit account number of the Amazon Web Services account that manages the repository. 
      */
     administratorAccount?: AccountId;
     /**
@@ -1519,7 +1805,7 @@ declare namespace CodeArtifact {
      */
     domainName?: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain that contains the repository. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain that contains the repository. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -1531,13 +1817,17 @@ declare namespace CodeArtifact {
      */
     description?: Description;
     /**
-     *  A list of upstream repositories to associate with the repository. The order of the upstream repositories in the list determines their priority order when AWS CodeArtifact looks for a requested package version. For more information, see Working with upstream repositories. 
+     *  A list of upstream repositories to associate with the repository. The order of the upstream repositories in the list determines their priority order when CodeArtifact looks for a requested package version. For more information, see Working with upstream repositories. 
      */
     upstreams?: UpstreamRepositoryInfoList;
     /**
      *  An array of external connections associated with the repository. 
      */
     externalConnections?: RepositoryExternalConnectionInfoList;
+    /**
+     * A timestamp that represents the date and time the repository was created.
+     */
+    createdTime?: Timestamp;
   }
   export interface RepositoryExternalConnectionInfo {
     /**
@@ -1545,7 +1835,7 @@ declare namespace CodeArtifact {
      */
     externalConnectionName?: ExternalConnectionName;
     /**
-     *  The package format associated with a repository's external connection. The valid package formats are:     npm: A Node Package Manager (npm) package.     pypi: A Python Package Index (PyPI) package.     maven: A Maven package that contains compiled code in a distributable format, such as a JAR file.   
+     *  The package format associated with a repository's external connection. The valid package formats are:     npm: A Node Package Manager (npm) package.     pypi: A Python Package Index (PyPI) package.     maven: A Maven package that contains compiled code in a distributable format, such as a JAR file.     nuget: A NuGet package.   
      */
     packageFormat?: PackageFormat;
     /**
@@ -1561,7 +1851,7 @@ declare namespace CodeArtifact {
      */
     name?: RepositoryName;
     /**
-     *  The AWS account ID that manages the repository. 
+     *  The Amazon Web Services account ID that manages the repository. 
      */
     administratorAccount?: AccountId;
     /**
@@ -1569,7 +1859,7 @@ declare namespace CodeArtifact {
      */
     domainName?: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -1580,6 +1870,10 @@ declare namespace CodeArtifact {
      *  The description of the repository. 
      */
     description?: Description;
+    /**
+     * A timestamp that represents the date and time the repository was created.
+     */
+    createdTime?: Timestamp;
   }
   export type RepositorySummaryList = RepositorySummary[];
   export interface ResourcePolicy {
@@ -1596,6 +1890,7 @@ declare namespace CodeArtifact {
      */
     document?: PolicyDocument;
   }
+  export type SHA256 = string;
   export type String = string;
   export type String255 = string;
   export interface SuccessfulPackageVersionInfo {
@@ -1604,7 +1899,7 @@ declare namespace CodeArtifact {
      */
     revision?: String;
     /**
-     *  The status of a package version. Valid statuses are:     Published     Unfinished     Unlisted     Archived     Disposed   
+     *  The status of a package version. 
      */
     status?: PackageVersionStatus;
   }
@@ -1654,7 +1949,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -1662,11 +1957,11 @@ declare namespace CodeArtifact {
      */
     repository: RepositoryName;
     /**
-     *  A format that specifies the type of the package with the statuses to update. The valid values are:     npm     pypi     maven   
+     *  A format that specifies the type of the package with the statuses to update. 
      */
     format: PackageFormat;
     /**
-     *  The namespace of the package. The package component that specifies its namespace depends on its type. For example:     The namespace of a Maven package is its groupId.     The namespace of an npm package is its scope.     A Python package does not contain a corresponding component, so Python packages do not have a namespace.   
+     * The namespace of the package version to be updated. The package version component that specifies its namespace depends on its type. For example:    The namespace of a Maven package version is its groupId.     The namespace of an npm package version is its scope.     Python and NuGet package versions do not contain a corresponding component, package versions of those formats do not have a namespace.     The namespace of a generic package is its namespace.   
      */
     namespace?: PackageNamespace;
     /**
@@ -1706,7 +2001,7 @@ declare namespace CodeArtifact {
      */
     domain: DomainName;
     /**
-     *  The 12-digit account number of the AWS account that owns the domain. It does not include dashes or spaces. 
+     *  The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces. 
      */
     domainOwner?: AccountId;
     /**
@@ -1718,7 +2013,7 @@ declare namespace CodeArtifact {
      */
     description?: Description;
     /**
-     *  A list of upstream repositories to associate with the repository. The order of the upstream repositories in the list determines their priority order when AWS CodeArtifact looks for a requested package version. For more information, see Working with upstream repositories. 
+     *  A list of upstream repositories to associate with the repository. The order of the upstream repositories in the list determines their priority order when CodeArtifact looks for a requested package version. For more information, see Working with upstream repositories. 
      */
     upstreams?: UpstreamRepositoryList;
   }

@@ -44,7 +44,7 @@ function resolveUrl() {
   } else if (env === 'regtest') {
     return 'https://stacks-node-api.regtest.stacks.co';
   } else {
-    return 'https://stacks-node-api.mainnet.stacks.co';
+    return 'https://api.hiro.so';
   }
 }
 

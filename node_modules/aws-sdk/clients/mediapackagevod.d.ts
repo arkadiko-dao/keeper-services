@@ -230,6 +230,10 @@ rounded to the nearest multiple of the source fragment duration.
     Arn?: __string;
     Authorization?: Authorization;
     /**
+     * The time the PackagingGroup was created.
+     */
+    CreatedAt?: __string;
+    /**
      * The fully qualified domain name for Assets in the PackagingGroup.
      */
     DomainName?: __string;
@@ -319,6 +323,10 @@ rounded to the nearest multiple of the source fragment duration.
      */
     Arn?: __string;
     CmafPackage?: CmafPackage;
+    /**
+     * The time the PackagingConfiguration was created.
+     */
+    CreatedAt?: __string;
     DashPackage?: DashPackage;
     HlsPackage?: HlsPackage;
     /**
@@ -347,6 +355,10 @@ rounded to the nearest multiple of the source fragment duration.
      */
     Arn?: __string;
     Authorization?: Authorization;
+    /**
+     * The time the PackagingGroup was created.
+     */
+    CreatedAt?: __string;
     /**
      * The fully qualified domain name for Assets in the PackagingGroup.
      */
@@ -378,6 +390,10 @@ rounded to the nearest multiple of the source fragment duration.
      * The Dynamic Adaptive Streaming over HTTP (DASH) profile type.  When set to "HBBTV_1_5", HbbTV 1.5 compliant output is enabled.
      */
     Profile?: Profile;
+    /**
+     * The source of scte markers used. When set to SEGMENTS, the scte markers are sourced from the segments of the ingested content. When set to MANIFEST, the scte markers are sourced from the manifest of the ingested content.
+     */
+    ScteMarkersSource?: ScteMarkersSource;
     StreamSelection?: StreamSelection;
   }
   export interface DashPackage {
@@ -391,6 +407,10 @@ rounded to the nearest multiple of the source fragment duration.
 
      */
     IncludeEncoderConfigurationInSegments?: __boolean;
+    /**
+     * When enabled, an I-Frame only stream will be included in the output.
+     */
+    IncludeIframeOnlyStream?: __boolean;
     /**
      * A list of triggers that controls when the outgoing Dynamic Adaptive Streaming over HTTP (DASH)
 Media Presentation Description (MPD) will be partitioned into multiple periods. If empty, the content will not
@@ -487,6 +507,10 @@ rounded to the nearest multiple of the source segment duration.
      */
     Arn?: __string;
     CmafPackage?: CmafPackage;
+    /**
+     * The time the PackagingConfiguration was created.
+     */
+    CreatedAt?: __string;
     DashPackage?: DashPackage;
     HlsPackage?: HlsPackage;
     /**
@@ -508,10 +532,18 @@ rounded to the nearest multiple of the source segment duration.
   }
   export interface DescribePackagingGroupResponse {
     /**
+     * The approximate asset count of the PackagingGroup.
+     */
+    ApproximateAssetCount?: __integer;
+    /**
      * The ARN of the PackagingGroup.
      */
     Arn?: __string;
     Authorization?: Authorization;
+    /**
+     * The time the PackagingGroup was created.
+     */
+    CreatedAt?: __string;
     /**
      * The fully qualified domain name for Assets in the PackagingGroup.
      */
@@ -542,6 +574,16 @@ rounded to the nearest multiple of the source segment duration.
      * The URL of the parent manifest for the repackaged Asset.
      */
     Url?: __string;
+  }
+  export interface EncryptionContractConfiguration {
+    /**
+     * A collection of audio encryption presets.
+     */
+    PresetSpeke20Audio: PresetSpeke20Audio;
+    /**
+     * A collection of video encryption presets.
+     */
+    PresetSpeke20Video: PresetSpeke20Video;
   }
   export type EncryptionMethod = "AES_128"|"SAMPLE_AES"|string;
   export interface HlsEncryption {
@@ -725,6 +767,10 @@ rounded to the nearest multiple of the source fragment duration.
      */
     Arn?: __string;
     CmafPackage?: CmafPackage;
+    /**
+     * The time the PackagingConfiguration was created.
+     */
+    CreatedAt?: __string;
     DashPackage?: DashPackage;
     HlsPackage?: HlsPackage;
     /**
@@ -740,10 +786,18 @@ rounded to the nearest multiple of the source fragment duration.
   }
   export interface PackagingGroup {
     /**
+     * The approximate asset count of the PackagingGroup.
+     */
+    ApproximateAssetCount?: __integer;
+    /**
      * The ARN of the PackagingGroup.
      */
     Arn?: __string;
     Authorization?: Authorization;
+    /**
+     * The time the PackagingGroup was created.
+     */
+    CreatedAt?: __string;
     /**
      * The fully qualified domain name for Assets in the PackagingGroup.
      */
@@ -755,9 +809,13 @@ rounded to the nearest multiple of the source fragment duration.
     Id?: __string;
     Tags?: Tags;
   }
+  export type PresetSpeke20Audio = "PRESET-AUDIO-1"|"PRESET-AUDIO-2"|"PRESET-AUDIO-3"|"SHARED"|"UNENCRYPTED"|string;
+  export type PresetSpeke20Video = "PRESET-VIDEO-1"|"PRESET-VIDEO-2"|"PRESET-VIDEO-3"|"PRESET-VIDEO-4"|"PRESET-VIDEO-5"|"PRESET-VIDEO-6"|"PRESET-VIDEO-7"|"PRESET-VIDEO-8"|"SHARED"|"UNENCRYPTED"|string;
   export type Profile = "NONE"|"HBBTV_1_5"|string;
+  export type ScteMarkersSource = "SEGMENTS"|"MANIFEST"|string;
   export type SegmentTemplateFormat = "NUMBER_WITH_TIMELINE"|"TIME_WITH_TIMELINE"|"NUMBER_WITH_DURATION"|string;
   export interface SpekeKeyProvider {
+    EncryptionContractConfiguration?: EncryptionContractConfiguration;
     /**
      * An Amazon Resource Name (ARN) of an IAM role that AWS Elemental
 MediaPackage will assume when accessing the key provider service.
@@ -818,10 +876,18 @@ MediaPackage will assume when accessing the key provider service.
   }
   export interface UpdatePackagingGroupResponse {
     /**
+     * The approximate asset count of the PackagingGroup.
+     */
+    ApproximateAssetCount?: __integer;
+    /**
      * The ARN of the PackagingGroup.
      */
     Arn?: __string;
     Authorization?: Authorization;
+    /**
+     * The time the PackagingGroup was created.
+     */
+    CreatedAt?: __string;
     /**
      * The fully qualified domain name for Assets in the PackagingGroup.
      */
