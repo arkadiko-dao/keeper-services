@@ -74,12 +74,12 @@ async function iterateAndCheck() {
   console.log('Last Vault ID is', lastId, ', iterating vaults');
   let vault;
   const vaultIds = Array.from(Array(lastId).keys());
-  for (let index = 1; index <= lastId; index++) {
+  for (let index = 341; index <= lastId; index++) {
     try {
       await fetchVault(index, vaults);
     } catch (e) {
       console.log('something terrible has happened...');
-      await timeout(5000);
+      await timeout(10000);
       await fetchVault(index, vaults);
     }
   }
