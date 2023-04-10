@@ -158,6 +158,44 @@ const setPrice = async (stxPrice, btcPrice, atAlexPrice) => {
   const transaction6 = await tx.makeContractCall(atAlexTxOptions);
   const result6 = tx.broadcastTransaction(transaction6, network);
   await utils.processing(result6, transaction6.txid(), 0);
+
+  const fetchPairStxUsda = async () => {
+    let details = await tx.callReadOnlyFunction({
+      contractAddress: CONTRACT_ADDRESS,
+      contractName: "arkadiko-swap-v2-1",
+      functionName: "get-pair-details",
+      functionArgs: [
+        tx.contractPrincipalCV(CONTRACT_ADDRESS, 'wrapped-stx-token'),
+        tx.contractPrincipalCV(CONTRACT_ADDRESS, 'usda-token')
+      ],
+      senderAddress: CONTRACT_ADDRESS,
+      network: network,
+    });
+
+    return tx.cvToJSON(details);
+  };
+  const stxUsda = await fetchPairStxUsda();
+
+  if (stxUsda.success) {
+    const stxUsdaDetails = stxUsda.value.value.value;
+    const stxAMMPrice = (stxUsdaDetails['balance-y'].value / stxUsdaDetails['balance-x'].value).toFixed(4);
+    const usdaPrice = (stxPrice/stxAMMPrice).toFixed(4);
+
+    const usdaTxOptions = {
+      contractAddress: CONTRACT_ADDRESS,
+      contractName: CONTRACT_NAME,
+      functionName: FUNCTION_NAME,
+      functionArgs: [tx.stringAsciiCV('STX/USDA'), tx.uintCV(new BN(usdaPrice * 1000000)), tx.uintCV(1000000)],
+      senderKey: process.env.STACKS_PRIVATE_KEY,
+      nonce: new BN(nonce + 6),
+      fee: new BN(10000, 10),
+      postConditionMode: 1,
+      network
+    };
+    const transaction5 = await tx.makeContractCall(usdaTxOptions);
+    const result5 = tx.broadcastTransaction(transaction5, network);
+    await utils.processing(result5, transaction5.txid(), 0);
+  }
 };
 
 const requestOptions = {
