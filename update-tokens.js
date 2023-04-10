@@ -302,4 +302,15 @@ const getSwapPair = async (tokenXAddress, tokenXContract, tokenYAddress, tokenYC
     },
     headers: { 'Content-Type': 'application/json' },
   });
+
+  const stxUsdaPriceInfo = await getPriceInfo('STX/USDA');
+  axios({
+    method: 'PATCH',
+    url: tokenUrl + `stxusda?key=${API_KEY}`,
+    data: {
+      last_price: stxUsdaPriceInfo['last-price']['value'],
+      price_last_updated: stxUsdaPriceInfo['last-block']['value']
+    },
+    headers: { 'Content-Type': 'application/json' },
+  });
 })();
