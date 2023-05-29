@@ -6,7 +6,7 @@ const network = utils.resolveNetwork();
 const axios = require('axios');
 
 const apiUrl = 'https://api.hiro.so';
-const sinceBlock = 100530;
+const sinceBlock = 107210;
 
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
@@ -28,7 +28,7 @@ async function getVaultById(vaultId) {
 }
 
 async function getTransactions() {
-  const unstackContract = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-pox-unstack-unlock-v2-2';
+  const unstackContract = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-pox-unstack-unlock-v2-4';
   let url = `${apiUrl}/extended/v1/address/${unstackContract}/transactions?limit=50`;
   let response = await axios.get(url);
   let totalCollateral = 0;
@@ -67,7 +67,7 @@ async function getTransactions() {
  });
 
   console.log('Total STX added:', additionalCollateral);
-  console.log('Total inflow/outflow:', totalCollateral - additionalCollateral);
+  console.log('Total inflow/outflow:', (totalCollateral - additionalCollateral) / 1000000);
 }
 
 getTransactions();

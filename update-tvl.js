@@ -10,22 +10,22 @@ const tvlUrl = 'https://arkadiko-api.herokuapp.com/api/v1/blockchains/1';
 // const tvlUrl = 'http://localhost:3000/api/v1/blockchains/1';
 
 const fetchVaultsTvl = async (prices) => {
-  let url = `https://stacks-node-api.mainnet.stacks.co/extended/v1/address/SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-stacker-v2-1/balances`;
+  let url = `https://stacks-node-api.mainnet.stacks.co/extended/v1/address/SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-stacker-v3-1/balances`;
   let response = await fetch(url, { credentials: 'omit' });
   let data = await response.json();
   let sum = (data['stx']['balance'] / 1000000) * (prices['stx'] / 1000000);
   
-  url = `https://stacks-node-api.mainnet.stacks.co/extended/v1/address/SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-stacker-2-v2-1/balances`;
+  url = `https://stacks-node-api.mainnet.stacks.co/extended/v1/address/SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-stacker-2-v3-1/balances`;
   response = await fetch(url, { credentials: 'omit' });
   data = await response.json();
   sum += (data['stx']['balance'] / 1000000) * (prices['stx'] / 1000000);
 
-  url = `https://stacks-node-api.mainnet.stacks.co/extended/v1/address/SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-stacker-3-v2-1/balances`;
+  url = `https://stacks-node-api.mainnet.stacks.co/extended/v1/address/SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-stacker-3-v3-1/balances`;
   response = await fetch(url, { credentials: 'omit' });
   data = await response.json();
   sum += (data['stx']['balance'] / 1000000) * (prices['stx'] / 1000000);
 
-  url = `https://stacks-node-api.mainnet.stacks.co/extended/v1/address/SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-stacker-4-v2-2/balances`;
+  url = `https://stacks-node-api.mainnet.stacks.co/extended/v1/address/SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-stacker-4-v3-1/balances`;
   response = await fetch(url, { credentials: 'omit' });
   data = await response.json();
   sum += (data['stx']['balance'] / 1000000) * (prices['stx'] / 1000000);
