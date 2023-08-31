@@ -28,7 +28,7 @@ const fetchTotalSupplyStDiko = async () => {
 const getPriceInfo = async (symbol) => {
   const fetchedPrice = await tx.callReadOnlyFunction({
     contractAddress: CONTRACT_ADDRESS,
-    contractName: "arkadiko-oracle-v1-1",
+    contractName: "arkadiko-oracle-v2-2",
     functionName: "get-price",
     functionArgs: [tx.stringAsciiCV(symbol || 'STX')],
     senderAddress: CONTRACT_ADDRESS,

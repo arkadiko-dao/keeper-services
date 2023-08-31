@@ -6,7 +6,7 @@ const network = utils.resolveNetwork();
 const axios = require('axios');
 
 const apiUrl = 'https://api.hiro.so';
-const sinceBlock = 107210;
+const sinceBlock = 116250;
 
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
@@ -46,7 +46,7 @@ async function getTransactions() {
     }
   });
 
-  console.log('Total STX unstacking:', totalCollateral);
+  console.log('Total STX unstacking:', totalCollateral / 1000000);
 
   const depositContract = 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-stx-reserve-v1-1';
   url = `${apiUrl}/extended/v1/address/${depositContract}/transactions?limit=50`;
@@ -66,7 +66,7 @@ async function getTransactions() {
     }
  });
 
-  console.log('Total STX added:', additionalCollateral);
+  console.log('Total STX added:', additionalCollateral / 1000000);
   console.log('Total inflow/outflow:', (totalCollateral - additionalCollateral) / 1000000);
 }
 
