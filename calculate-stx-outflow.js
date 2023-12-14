@@ -6,7 +6,7 @@ const network = utils.resolveNetwork();
 const axios = require('axios');
 
 const apiUrl = 'https://api.hiro.so';
-const sinceBlock = 116250;
+const sinceBlock = 128050;
 
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
@@ -38,11 +38,9 @@ async function getTransactions() {
     if (result['tx_status'] === 'success' && result['tx_type'] === 'contract_call' && result['block_height'] >= sinceBlock) {
       const vaultId = result['contract_call']['function_args'][0]['repr'].replace('u', '');
 
-      if (vaultId != 2050) {
-        const vault = await getVaultById(vaultId);
-        totalCollateral += vault['collateral']['value'];
-        console.log('Vault with ID', vaultId, 'unstacking', vault['collateral']['value'] / 1000000, 'STX');
-      }
+      const vault = await getVaultById(vaultId);
+      totalCollateral += vault['collateral']['value'];
+      console.log('Vault with ID', vaultId, 'unstacking', vault['collateral']['value'] / 1000000, 'STX');
     }
   });
 
