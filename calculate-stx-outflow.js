@@ -6,7 +6,7 @@ const network = utils.resolveNetwork();
 const axios = require('axios');
 
 const apiUrl = 'https://api.hiro.so';
-const sinceBlock = 128050;
+const sinceBlock = 130050;
 
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
