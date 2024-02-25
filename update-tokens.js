@@ -243,7 +243,7 @@ const getSwapPair = async (tokenXAddress, tokenXContract, tokenYAddress, tokenYC
     headers: { 'Content-Type': 'application/json' },
   });
 
-  const dikoStaked = await getTotalStaked('arkadiko-stake-pool-diko-v1-2');
+  const dikoStaked = await getTotalStaked('arkadiko-stake-pool-diko-v1-4');
   axios({
     method: 'PATCH',
     url: tokenUrl + `diko?key=${API_KEY}`,
