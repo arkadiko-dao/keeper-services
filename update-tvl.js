@@ -10,35 +10,12 @@ const tvlUrl = 'https://arkadiko-api.herokuapp.com/api/v1/blockchains/1';
 // const tvlUrl = 'http://localhost:3000/api/v1/blockchains/1';
 
 const fetchVaultsTvl = async (prices) => {
-  let url = `https://stacks-node-api.mainnet.stacks.co/extended/v1/address/SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-stacker-v3-1/balances`;
+  let url = `https://stacks-node-api.mainnet.stacks.co/extended/v1/address/SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-vaults-pool-active-v1-1/balances`;
   let response = await fetch(url, { credentials: 'omit' });
   let data = await response.json();
-  let sum = (data['stx']['balance'] / 1000000) * (prices['stx'] / 1000000);
-  
-  url = `https://stacks-node-api.mainnet.stacks.co/extended/v1/address/SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-stacker-2-v3-1/balances`;
-  response = await fetch(url, { credentials: 'omit' });
-  data = await response.json();
-  sum += (data['stx']['balance'] / 1000000) * (prices['stx'] / 1000000);
-
-  url = `https://stacks-node-api.mainnet.stacks.co/extended/v1/address/SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-stacker-3-v3-1/balances`;
-  response = await fetch(url, { credentials: 'omit' });
-  data = await response.json();
-  sum += (data['stx']['balance'] / 1000000) * (prices['stx'] / 1000000);
-
-  url = `https://stacks-node-api.mainnet.stacks.co/extended/v1/address/SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-stacker-4-v3-1/balances`;
-  response = await fetch(url, { credentials: 'omit' });
-  data = await response.json();
-  sum += (data['stx']['balance'] / 1000000) * (prices['stx'] / 1000000);
-
-  url = `https://stacks-node-api.mainnet.stacks.co/extended/v1/address/SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-stx-reserve-v1-1/balances`;
-  response = await fetch(url, { credentials: 'omit' });
-  data = await response.json();
-  sum += (data['stx']['balance'] / 1000000) * (prices['stx'] / 1000000);
-
-  url = `https://stacks-node-api.mainnet.stacks.co/extended/v1/address/SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.arkadiko-claim-yield-v2-1/balances`;
-  response = await fetch(url, { credentials: 'omit' });
-  data = await response.json();
-  sum += (data['stx']['balance'] / 1000000) * (prices['stx'] / 1000000);
+  let sum = (data['fungible_tokens']['SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR.wstx-token::wstx']['balance'] / 1000000) * (prices['stx'] / 1000000);
+  sum += (data['fungible_tokens']['SP3DX3H4FEYZJZ586MFBS25ZW3HZDMEW92260R2PR.Wrapped-Bitcoin::wrapped-bitcoin']['balance'] / 100000000) * (prices['xbtc'] / 100000000);
+  sum = (data['fungible_tokens']['SP4SZE494VC2YC5JYG7AYFQ44F5Q4PYV7DVMDPBG.ststx-token::ststx']['balance'] / 1000000) * (1.00506 * prices['stx'] / 1000000);
 
   return sum;
 };
