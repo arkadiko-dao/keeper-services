@@ -13,26 +13,26 @@ const poolUrl = 'https://arkadiko-api.herokuapp.com/api/v1/pools/';
 
 // 1. Update total supply of stDIKO
 const fetchTotalSupplyStDiko = async () => {
-  let details = await tx.callReadOnlyFunction({
+  let details = await tx.fetchCallReadOnlyFunction({
     contractAddress: CONTRACT_ADDRESS,
     contractName: "stdiko-token",
     functionName: "get-total-supply",
     functionArgs: [],
     senderAddress: CONTRACT_ADDRESS,
-    network: network,
+    network: 'mainnet',
   });
 
   return tx.cvToJSON(details).value.value;
 };
 
 const getPriceInfo = async (symbol) => {
-  const fetchedPrice = await tx.callReadOnlyFunction({
+  const fetchedPrice = await tx.fetchCallReadOnlyFunction({
     contractAddress: CONTRACT_ADDRESS,
     contractName: "arkadiko-oracle-v2-3",
     functionName: "get-price",
     functionArgs: [tx.stringAsciiCV(symbol || 'STX')],
     senderAddress: CONTRACT_ADDRESS,
-    network: network,
+    network: 'mainnet'
   });
   const json = tx.cvToJSON(fetchedPrice);
 
@@ -40,7 +40,7 @@ const getPriceInfo = async (symbol) => {
 };
 
 const getTotalStaked = async (poolName) => {
-  const call = await tx.callReadOnlyFunction({
+  const call = await tx.fetchCallReadOnlyFunction({
     contractAddress: CONTRACT_ADDRESS,
     contractName: poolName,
     functionName: "get-total-staked",
@@ -54,7 +54,7 @@ const getTotalStaked = async (poolName) => {
 };
 
 const getSwapPair = async (tokenXAddress, tokenXContract, tokenYAddress, tokenYContract) => {
-  const pairDetailsCall = await tx.callReadOnlyFunction({
+  const pairDetailsCall = await tx.fetchCallReadOnlyFunction({
     contractAddress: CONTRACT_ADDRESS,
     contractName: 'arkadiko-swap-v2-1',
     functionName: 'get-pair-details',

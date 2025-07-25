@@ -6,13 +6,13 @@ const network = utils.resolveNetwork();
 
 // Epoch end
 async function getEpochEndBlock() {
-  const call = await tx.callReadOnlyFunction({
+  const call = await tx.fetchCallReadOnlyFunction({
     contractAddress: CONTRACT_ADDRESS,
     contractName: 'arkadiko-liquidation-rewards-diko-v1-1',
     functionName: 'get-end-epoch-block',
     functionArgs: [],
     senderAddress: CONTRACT_ADDRESS,
-    network
+    network: 'mainnet'
   });
   return tx.cvToJSON(call).value.value;
 }

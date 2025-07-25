@@ -51,12 +51,12 @@ function resolveUrl() {
 
 function resolveNetwork() {
   if (env === 'mainnet') {
-    const stacksNetwork = new network.StacksMainnet();
+    const stacksNetwork = network.STACKS_MAINNET;
     stacksNetwork.coreApiUrl = resolveUrl();
 
     return stacksNetwork;
   } else {
-    const stacksNetwork = new network.StacksTestnet();
+    const stacksNetwork = network.STACKS_TESTNET;
     stacksNetwork.coreApiUrl = resolveUrl();
 
     return stacksNetwork;
